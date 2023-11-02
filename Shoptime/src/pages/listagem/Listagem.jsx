@@ -21,8 +21,8 @@ const Listagem = () => {
   useEffect(() => {
     const produtosFiltrados = produtos.filter((produto) => {
       return (
-        produto.name.toLowerCase().includes(filtroNome.toLowerCase()) &&
-        produto.quantityInStock > 0
+        produto.nome.toLowerCase().includes(filtroNome.toLowerCase()) &&
+        produto.estoque > 0
       );
     });
 
@@ -36,12 +36,12 @@ const Listagem = () => {
         type="text"
         placeholder="Filtrar por nome"
         value={filtroNome}
-        onChange={(e) => setFiltroNome(e.target.value)}
+        onChange={(e) => setFiltroNome(e.target.valor)}
       />
       <ul>
         {produtosFiltrados.map((produto) => (
           <li key={produto.id}>
-            {produto.name} - R$ {produto.price}
+            {produto.nome} - R$ {produto.preco}
           </li>
         ))}
       </ul>
