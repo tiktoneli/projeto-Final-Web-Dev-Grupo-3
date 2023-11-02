@@ -79,9 +79,9 @@ feitas utilizando React Router Dom conforme versão 6.
 
 #Créditos:
 
-Raynan Titoneli
-Douglas Mariano
-Bernardo Bonifácio
-Brayan Gazale
-Douglas Maia
-Natally Monteiro
+Raynan Titoneli  
+Douglas Mariano  
+Bernardo Bonifácio  
+Brayan Gazale  
+Douglas Maia  
+Natally Monteiro  
