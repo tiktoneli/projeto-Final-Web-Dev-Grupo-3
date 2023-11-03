@@ -48,6 +48,7 @@ const Listagem = () => {
         </div>
         <div>
           
+          
             <Container className="d-flex justify-content-between" >
           {produtos.map(
               ({  id, nome, preco, quantidade, descricao, favoritos, imgurl}) => (
