@@ -13,6 +13,7 @@ import Home from './pages/home/Home.jsx';
 import Layout from './Layout.jsx';
 
 import { ChakraProvider } from '@chakra-ui/react'
+import { LojaProvider } from './context/LojaContext.jsx';
 
 const router = createBrowserRouter([
   {
@@ -20,11 +21,11 @@ const router = createBrowserRouter([
     element:<Layout/>,
     children:[
       {
-         index: true, element: <Home /> 
+         index: true, element: <Listagem /> 
       },
       {
-        path: '/listagem',
-        element: <Listagem/>
+        path: '/home',
+        element: <Home/>
       },
       {
         path:'/pedidos',
@@ -43,8 +44,10 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <ChakraProvider>
-      <RouterProvider router={router} />
-    </ChakraProvider>
+    <LojaProvider>
+      <ChakraProvider>
+        <RouterProvider router={router} />
+      </ChakraProvider>
+    </LojaProvider>
   </React.StrictMode>,
 )
