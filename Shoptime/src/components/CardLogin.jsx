@@ -7,10 +7,10 @@ import Card from "react-bootstrap/Card";
 import { Container } from "react-bootstrap";
 
 import { useContext } from "react";
-import { LoginContext } from "../context/LoginContext";
+import { LojaContext } from "../context/LojaContext";
 
 const CardLogin = () => {
-    const {email, senha, setEmail, setSenha, usuarios, setUsuarios} = useContext(LoginContext)
+    const {email, senha, setEmail, setSenha, usuarios, setUsuarios} = useContext(LojaContext)
 
   const handleLimpar = () => {
     setEmail("");
