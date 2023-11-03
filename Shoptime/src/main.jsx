@@ -1,42 +1,50 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import App from './App.jsx'
-import './index.css'
 import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
-import Home from './pages/home/home.jsx';
+
 import Listagem from './pages/listagem/Listagem.jsx';
 import Pedidos from './pages/pedidos/pedidos.jsx';
 import Produto from './pages/produto/Produto.jsx';
 import Carrinho from './pages/carrinho/Carrinho.jsx';
+import Home from './pages/home/Home.jsx';
+import Layout from './Layout.jsx';
+
+import { ChakraProvider } from '@chakra-ui/react'
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element:<Home/>,
-  },
-  {
-    path: '/listagem',
-    element: <Listagem/>
-  },
-  {
-    path:'/pedidos',
-    element: <Pedidos/>
-  },
-  {
-    path:'/produto/:id',
-    element:<Produto/>
-  },
-  {
-    path:'/carrinho',
-    element:<Carrinho/>
-  }
-])
+    element:<Layout/>,
+    children:[
+      {
+         index: true, element: <Home /> 
+      },
+      {
+        path: '/listagem',
+        element: <Listagem/>
+      },
+      {
+        path:'/pedidos',
+        element: <Pedidos/>
+      },
+      {
+        path:'/produto/:id',
+        element:<Produto/>
+      },
+      {
+        path:'/carrinho',
+        element:<Carrinho/>
+      }
+    ]
+  }])
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-     <RouterProvider router={router} />
+    <ChakraProvider>
+      <RouterProvider router={router} />
+    </ChakraProvider>
   </React.StrictMode>,
 )
