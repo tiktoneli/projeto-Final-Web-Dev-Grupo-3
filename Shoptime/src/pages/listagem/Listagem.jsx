@@ -36,8 +36,7 @@ const Listagem = () => {
   const handleFiltrar = () => {
      setProdutos(produtos.filter((produto) => produto.quantidade > 0 && produto.nome == filtroNome))
   }
-  console.log('produtos AQUI ENXERGA')
-  console.log(produtos)
+  
   return (
       <>
         <div>
