@@ -1,52 +1,41 @@
-import { api } from "../../api/api"
+import { useEffect, useState } from "react";
+import { api } from "../../api/api";
+import CardProdutos from "../../components/CardProdutos";
 
 const Listagem = () => {
-  const [produtos, setProdutos] = useState([]); 
-  const [filtroNome, setFiltroNome] = useState(""); 
-  const [produtosFiltrados, setProdutosFiltrados] = useState([]);
+  const [produtos, setProdutos] = useState([])
+
+  const getProdutos = async () => {
+      const response = await api.get('/produtos')
+      setProdutos(response.data)
+  }
 
   useEffect(() => {
-    async function fetchProdutos() {
-      try {
-        const response = await getProdutos();
-        setProdutos(response);
-      } catch (error) {
-        console.error("Erro ao buscar produtos:", error);
-      }
-    }
-
-    fetchProdutos();
-  }, []);
-
-  useEffect(() => {
-    const produtosFiltrados = produtos.filter((produto) => {
-      return (
-        produto.nome.toLowerCase().includes(filtroNome.toLowerCase()) &&
-        produto.estoque > 0
-      );
-    });
-
-    setProdutosFiltrados(produtosFiltrados);
-  }, [produtos, filtroNome]);
+      getProdutos()
+  }, [])
 
   return (
-    <div>
-      <h1>Lista de Produtos</h1>
-      <input
-        type="text"
-        placeholder="Filtrar por nome"
-        value={filtroNome}
-        onChange={(e) => setFiltroNome(e.target.valor)}
-      />
-      <ul>
-        {produtosFiltrados.map((produto) => (
-          <li key={produto.id}>
-            {produto.nome} - R$ {produto.preco}
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
-};
+      <>
+      <div>
+      {produtos.map(
+          ({  id, nome, preco, quantidade, descricao, favoritos, imgurl}) => (
+              <CardProdutos
+                  
+                  nome={nome}
+                  descricao={descricao}
+                  id={id}
+                  getProdutos={getProdutos}
+                  favoritos={favoritos}
+                  quantidade={quantidade}
+                  preco={preco}
+                  imgurl={imgurl}                
+              />
+              
+          )
+      )}
+      </div>
+      </>
+  )
+}
 
-export default Listagem;
+export default Listagem
