@@ -4,9 +4,11 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Button, Col, Form, Navbar, Row } from "react-bootstrap";
 import { LojaContext } from "../context/LojaContext";
 import { api } from "../api/api";
+import { FaMagnifyingGlass } from 'react-icons/fa6'
 
 const Header = () => {
   const [filtroNome, setFiltroNome] = useState("");
+  const [textoPesquisa, setTextoPesquisa] = useState("")
 
   const { produtos, setProdutos } = useContext(LojaContext);
 
@@ -17,10 +19,15 @@ const Header = () => {
 
   useEffect(() => {
     getProdutos();
+    setTextoPesquisa('')
   }, []);
 
   const handleChangeFiltro = (e) => {
     setFiltroNome(e.target.value);
+  };
+
+  const handleChangeTexto = () => {
+    setTextoPesquisa(`mostrando resultados para: ${filtroNome}`);
   };
 
   const handleFiltrar = async (e) => {
@@ -28,8 +35,9 @@ const Header = () => {
     const produtosFiltrados = await api.get('/produtos', {
       params: {nome_like: filtroNome}
     })
+    handleChangeTexto()
     setProdutos(produtosFiltrados.data);
-  };  
+  };
 
   return (
     <>
@@ -59,7 +67,7 @@ const Header = () => {
             </Col>
             <Col xs="auto">
               <Button type="submit" onClick={handleFiltrar}>
-                Pesquisar
+                <FaMagnifyingGlass/>
               </Button>
             </Col>
             <Col xs="auto">
@@ -68,14 +76,10 @@ const Header = () => {
               </Button>
             </Col>
             <Col xs="auto">
-              <Button
-                variant="success"
-                onClick={() => (window.location.href = "/carrinho")}
-              >
-                🛒
-              </Button>
+              <Link to={'/carrinho'}><Button variant="success">🛒</Button></Link>
             </Col>
           </Row>
+           <p>{textoPesquisa}</p>
         </Form>
       </Navbar>
     </>
