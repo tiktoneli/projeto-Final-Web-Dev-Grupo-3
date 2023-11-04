@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Container, Navbar, Form, Button, Table, Card } from 'react-bootstrap';
 import "bootstrap/dist/css/bootstrap.min.css";
 import Col from 'react-bootstrap/Col';
@@ -8,7 +8,8 @@ import { api } from '../../api/api';
 
 const Pedidos = () => {
 
-  const { produtos, pedidos, setPedidos, usuarioLogado} = useContext(LojaContext)
+  const { pedidos, setPedidos, usuarioLogado } = useContext(LojaContext);
+  const [produtosDoPedido, setProdutosDoPedido] = useState([]);
   
 
   const getPedidos = async () => {
@@ -22,19 +23,40 @@ const Pedidos = () => {
     }
   };
 
-  const getProdutos = async () => {
-    const response = await api.get('/produtos', {
-      params: {id: item.id}
-    })
-  }
+  const getDetalhesProdutos = async () => {
+    setProdutosDoPedido([]);
   
-
+    try {
+      const detalhesPromises = pedidos.map(async (p) => {
+        return Promise.all(p.itens.map(async (i) => {
+          const response = await api.get(`/produtos/${i.idProduto}`);
+          console.log('Detalhes do produto:', response.data);
+          return response.data;
+        }));
+      });
+  
+      const produtosDoPedido = await Promise.all(detalhesPromises);
+      
+      setProdutosDoPedido(produtosDoPedido.flat());
+    } catch (error) {
+      console.error('Erro ao obter detalhes dos produtos do pedido:', error);
+    }
+  };
+  
   useEffect(() => {
     const fetchData = async () => {
       await getPedidos();
     };
     fetchData();
-  }, []);
+  }, []); 
+  
+  useEffect(() => {
+    const fetchData = async () => {
+      await getDetalhesProdutos();
+    };
+    fetchData();
+  }, [pedidos]); 
+  
 
   const valorTotal = pedidos.reduce((total, item) => total + item.quantidade * item.valorUnitario, 0);
 
@@ -49,33 +71,22 @@ const Pedidos = () => {
           <Table striped bordered hover style={{ color: 'black' }}>
             <thead>
               <tr>
-                <th></th>
                 <th>Produto</th>
                 <th>Quantidade</th>
                 <th>Valor Unitário</th>
               </tr>
             </thead>
             <tbody>
-              {pedidos.map((pedido, index) => (
-                <tr key={pedido.id}>
-                  <td>{index + 1}</td>
-                  {pedido.produtos ? (
-                    pedido.produtos.map((produto, produtoIndex) => (
-                      <React.Fragment key={produtoIndex}>
-                        <td>{ produto.nome }</td>
-                        <td>{ produto.quantidade }</td>
-                        <td>R$ {(produto.quantidade * produto.preco).toFixed(2)}</td>
-                      </React.Fragment>
-                    ))
-                  ) : (
-                    <td colSpan="2">Nenhum produto encontrado</td>
-                  )}
-                  
+              {produtosDoPedido.map((produto, index) => (
+                <tr key={produto.id}>
+                  <td>{produto.nome}</td>
+                  <td>{produto.quantidade}</td>
+                  <td>R$ {produto.preco}</td>
                 </tr>
               ))}
             </tbody>
             <tfoot>
-            {pedidos.map((pedido, index) => (
+            {pedidos.map((pedido) => (
               <tr key={pedido.id}>
                 <td colSpan="4" className="text-end font-weight-bold">Valor Total</td>
                 <td className="font-weight-bold">R$ {pedido.valorTotal.toFixed(2)}</td>
