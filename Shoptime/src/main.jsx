@@ -6,9 +6,9 @@ import {
 } from "react-router-dom";
 
 import Listagem from './pages/listagem/Listagem.jsx';
-import Pedidos from './pages/pedidos/pedidos.jsx';
 import Produto from './pages/produto/Produto.jsx';
 import Carrinho from './pages/carrinho/Carrinho.jsx';
+import Pedidos from './pages/pedidos/Pedidos.jsx'
 import Home from './pages/home/Home.jsx';
 import Layout from './Layout.jsx';
 
@@ -29,7 +29,7 @@ const router = createBrowserRouter([
       },
       {
         path:'/pedidos',
-        element: <Pedidos/>
+        element: <Pedidos />
       },
       {
         path:'/produto/:id',
