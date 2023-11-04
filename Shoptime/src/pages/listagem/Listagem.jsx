@@ -36,19 +36,8 @@ const Listagem = () => {
   const handleFiltrar = () => {
      setProdutos(produtos.filter((produto) => produto.quantidade > 0 && produto.nome == filtroNome))
   }
-  console.log('produtos AQUI ENXERGA')
-  console.log(produtos)
   return (
       <>
-        <div>
-          {produtos.length}
-          <input onChange={handleChangeFiltro} placeholder="Nome do produto"/>
-          <button style={{border:'1px solid black'}} onClick={getProdutoFiltrado}>Pesquisar</button>
-          <button style={{border:'1px solid black'}} onClick={getProdutos}>Limpar Pesquisa</button>
-        </div>
-        <div>
-          
-          
             <Container className="d-flex justify-content-between" >
           {produtos.map(
               ({  id, nome, preco, quantidade, descricao, favoritos, imgurl}) => (
@@ -70,8 +59,6 @@ const Listagem = () => {
             
           </Container>   
 
-      
-        </div>
       </>
   )
 }

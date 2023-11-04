@@ -14,17 +14,6 @@ const Header = () => {
     setProdutos(response.data);
   };
 
-  const getProdutoFiltrado = async () => {
-    try {
-      const response = await api.get("/produtos", {
-        params: { nome_like: filtroNome },
-      });
-      setProdutos(response.data);
-    } catch (error) {
-      console.error("Erro ao buscar produtos:", error);
-    }
-  };
-
   useEffect(() => {
     getProdutos();
   }, []);
@@ -33,13 +22,16 @@ const Header = () => {
     setFiltroNome(e.target.value);
   };
 
-  const handleFiltrar = () => {
-    setProdutos(
-      produtos.filter(
-        (produto) => produto.quantidade > 0 && produto.nome == filtroNome
-      )
+  const handleFiltrar = (e) => {
+    e.preventDefault();
+    const produtosFiltrados = produtos.filter(
+      (produto) =>
+        produto.quantidade > 0 &&
+        produto.nome.toLowerCase().includes(filtroNome.toLowerCase())
     );
-  };
+    setProdutos(produtosFiltrados);
+  };  
+
   return (
     <>
       <Navbar
@@ -67,8 +59,13 @@ const Header = () => {
               />
             </Col>
             <Col xs="auto">
-              <Button type="submit" onClick={getProdutoFiltrado}>
+              <Button type="submit" onClick={handleFiltrar}>
                 Pesquisar
+              </Button>
+            </Col>
+            <Col xs="auto">
+              <Button type="submit" variant="danger" onClick={getProdutos}>
+                Limpar Pesquisa
               </Button>
             </Col>
             <Col xs="auto">
