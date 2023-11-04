@@ -8,9 +8,12 @@ import { Container } from "react-bootstrap";
 
 import { useContext, useEffect } from "react";
 import { LojaContext } from "../context/LojaContext";
+import { useNavigate } from "react-router-dom";
 
 const CardLogin = () => {
     const {email, senha, setEmail, setSenha, usuarios, setUsuarios, usuarioLogado, setUsuarioLogado} = useContext(LojaContext)
+
+    const navigate = useNavigate()
 
   useEffect(() => {
     getUsuarios()
@@ -32,6 +35,10 @@ const CardLogin = () => {
       params: {email: email, senha: senha}
     })
     setUsuarioLogado(response.data[0])
+    if(response.data[0]==undefined){
+      alert('usuario ou senha invalidos!')
+    }else{navigate('/')}
+    console.log(response.data[0])
     handleLimpar()
   }
 

@@ -48,7 +48,7 @@ const Header = () => {
 
   return (
     <>
-      <Navbar bg="primary" variant="dark" className="justify-content-between">
+      <Navbar style={{ padding:"10px" }} bg="primary" variant="dark" className="justify-content-between">
         <Form inline>
           <Link style={{ marginRight: "20px" }} to={"/"}>
             <img src="" />

@@ -39,7 +39,7 @@ import { LojaContext } from "../../context/LojaContext.jsx";
       <Container style={{ paddingTop:"1.5rem"}}>
         <CardGroup style={{ minHeight:"35rem"}}>
           <Card>
-            <Card.Img style={{height:'40vh', width:'30vw'}} variant="top" src={produto.imgurl} />
+          <Card.Img style={{height:'40vh',  objectFit:'contain'}} variant="top" src={produto.imgurl} />
           </Card>
           <Card>
             <Card.Body>

@@ -23,7 +23,7 @@ const CardProdutos = ({ id, nome, favoritos, imgurl, preco }) => {
     return (
           <Col key={id}>
             <Card style={{ width: '20rem', margin:'2rem', height:'20rem' }}>
-              <Card.Img style={{maxHeight:'10rem', maxWidth:'10rem'}} variant="top" src={imgurl} />
+              <Card.Img style={{maxHeight:'10rem', objectFit:'contain'}} variant="top" src={imgurl} />
               <span style={{ position: 'absolute', bottom: '10px', right: '10px' }}>
                 <Button variant="success">🛒</Button>
 
