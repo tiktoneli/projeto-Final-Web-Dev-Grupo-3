@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Button, Col, Form, Navbar, Row } from "react-bootstrap";
 import { LojaContext } from "../context/LojaContext";
+import { api } from "../api/api";
 
 const Header = () => {
   const [filtroNome, setFiltroNome] = useState("");
@@ -22,14 +23,12 @@ const Header = () => {
     setFiltroNome(e.target.value);
   };
 
-  const handleFiltrar = (e) => {
+  const handleFiltrar = async (e) => {
     e.preventDefault();
-    const produtosFiltrados = produtos.filter(
-      (produto) =>
-        produto.quantidade > 0 &&
-        produto.nome.toLowerCase().includes(filtroNome.toLowerCase())
-    );
-    setProdutos(produtosFiltrados);
+    const produtosFiltrados = await api.get('/produtos', {
+      params: {nome_like: filtroNome}
+    })
+    setProdutos(produtosFiltrados.data);
   };  
 
   return (

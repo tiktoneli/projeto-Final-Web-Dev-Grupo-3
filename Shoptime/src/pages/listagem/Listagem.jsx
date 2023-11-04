@@ -14,28 +14,10 @@ const Listagem = () => {
       setProdutos(response.data)
   }
 
-  const getProdutoFiltrado = async () => {
-    try {
-      const response = await api.get('/produtos', {
-        params: {nome_like: filtroNome}
-      });
-      setProdutos(response.data);
-    } catch (error) {
-      console.error('Erro ao buscar produtos:', error);
-    }
-  }
-
   useEffect(() => {
       getProdutos()
   }, [])
 
-  const handleChangeFiltro = (e) => {
-    setFiltroNome(e.target.value)
-  }
-
-  const handleFiltrar = () => {
-     setProdutos(produtos.filter((produto) => produto.quantidade > 0 && produto.nome == filtroNome))
-  }
   return (
       <>
             <Container className="d-flex justify-content-between" >
