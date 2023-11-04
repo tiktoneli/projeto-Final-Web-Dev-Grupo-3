@@ -13,14 +13,9 @@ const Listagem = () => {
       setProdutos(response.data)
   }
 
-  useEffect(() => {
-      getProdutos()
-  }, [])
-
-
   return (
       <>
-            <Container className="d-flex justify-content-between" >
+        <Container className="d-flex justify-content-between flex-wrap" >
           {produtos.map(
               ({  id, nome, preco, quantidade, descricao, favoritos, imgurl}) => (
                 <Row key={id} xs={id} md={3} className="g-4">
@@ -38,9 +33,7 @@ const Listagem = () => {
                 </Row>
               )
           )}
-            
-          </Container>   
-
+        </Container>   
       </>
   )
 }

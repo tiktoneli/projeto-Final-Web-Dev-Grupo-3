@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Button, Col, Form, Navbar, Row } from "react-bootstrap";
 import { LojaContext } from "../context/LojaContext";
@@ -11,6 +11,7 @@ const Header = () => {
   const [textoPesquisa, setTextoPesquisa] = useState("")
 
   const { produtos, setProdutos } = useContext(LojaContext);
+  const navigate = useNavigate()
 
   const getProdutos = async () => {
     const response = await api.get("/produtos");
@@ -30,6 +31,12 @@ const Header = () => {
     setTextoPesquisa(`mostrando resultados para: ${filtroNome}`);
   };
 
+  //tentativa de pesquisa a partir de qualquer rota
+  const handleNavigateFiltro = async (e) => {
+    navigate('/')
+    await handleFiltrar(e)
+  }
+
   const handleFiltrar = async (e) => {
     e.preventDefault();
     const produtosFiltrados = await api.get('/produtos', {
@@ -41,11 +48,7 @@ const Header = () => {
 
   return (
     <>
-      <Navbar
-        style={{ padding: "10px" }}
-        data-bs-theme="secondary"
-        className="bg-primary bg-body-tertiary justify-content-between"
-      >
+      <Navbar bg="primary" variant="dark" className="justify-content-between">
         <Form inline>
           <Link style={{ marginRight: "20px" }} to={"/"}>
             <img src="" />
@@ -66,7 +69,7 @@ const Header = () => {
               />
             </Col>
             <Col xs="auto">
-              <Button type="submit" onClick={handleFiltrar}>
+              <Button type="submit" onClick={handleNavigateFiltro}>
                 <FaMagnifyingGlass/>
               </Button>
             </Col>
