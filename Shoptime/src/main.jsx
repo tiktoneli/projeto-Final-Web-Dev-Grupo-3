@@ -43,11 +43,11 @@ const router = createBrowserRouter([
   }])
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
+
     <LojaProvider>
       <ChakraProvider>
         <RouterProvider router={router} />
       </ChakraProvider>
     </LojaProvider>
-  </React.StrictMode>,
+
 )

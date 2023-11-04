@@ -2,9 +2,16 @@
   "users": [
     {
       "id": 1,
-      "nome": "admin@admin",
-      "email": "Raphael da Rocha Pinto",
-      "senha": "123456",
+      "nome": "Admin da silva",
+      "email": "admin@admin",
+      "senha": "admin",
+      "pedidos": []
+    },
+    {
+      "id": 2,
+      "nome": "admon",
+      "email": "admin2@admin",
+      "senha": "admin",
       "pedidos": []
     }
   ],

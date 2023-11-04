@@ -14,7 +14,7 @@ export const LojaProvider = ({children}) => {
   const [quantidadeCarrinho, setQuantidadeCarrinho] = useState([])
   const [produtosCarrinho, setProdutosCarrinho] = useState([])
 
-  const [usuarioLogado, setUsuarioLogado] = useState('')
+  const [usuarioLogado, setUsuarioLogado] = useState({})
 
   return(
     <LojaContext.Provider value={{email, setEmail, senha, setSenha, usuarios, setUsuarios, pedidos, setPedidos, produtos, setProdutos, quantidade, setQuantidade, quantidadeCarrinho, setQuantidadeCarrinho, produtosCarrinho, setProdutosCarrinho, usuarioLogado, setUsuarioLogado}}>{children}</LojaContext.Provider>

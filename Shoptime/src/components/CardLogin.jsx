@@ -6,11 +6,15 @@ import Form from "react-bootstrap/Form";
 import Card from "react-bootstrap/Card";
 import { Container } from "react-bootstrap";
 
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { LojaContext } from "../context/LojaContext";
 
 const CardLogin = () => {
     const {email, senha, setEmail, setSenha, usuarios, setUsuarios, usuarioLogado, setUsuarioLogado} = useContext(LojaContext)
+
+  useEffect(() => {
+    getUsuarios()
+  }, [])
 
   const handleLimpar = () => {
     setEmail("");
@@ -21,21 +25,15 @@ const CardLogin = () => {
     const response = await api.get('/users')
     setUsuarios(response.data)
   }
-    const handleLogar = (e) => {
-      e.preventDefault()
-      setUsuarioLogado('')
-      const response = getUsuarios()
-      usuarios.map((usuario) => {
-        if(email==usuario.email && senha == usuario.senha){
-          setUsuarioLogado(usuario.id)
-          alert('logado com sucesso!')
-        }else{alert('Não foi possível realizar o login, verifique as informações')}
-      })
-      
-      alert(`${email}, ${senha}`)
-      console.log({usuarioLogado})
-      handleLimpar()
-    }
+
+  const handleLogarReq = async (e) => {
+    e.preventDefault()
+    const response = await api.get('/users', {
+      params: {email: email, senha: senha}
+    })
+    setUsuarioLogado(response.data[0])
+    handleLimpar()
+  }
 
     return(
     <Container className="d-flex justify-content-center align-items-center vh-100" >
@@ -43,7 +41,7 @@ const CardLogin = () => {
       <Card.Header>Login</Card.Header>
       <Card.Body>
         <Form onSubmit={((e) => {
-          handleLogar(e);
+          handleLogarReq(e);
         })} style={{alignItems: "center"}}>
           <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Label>Email</Form.Label>
