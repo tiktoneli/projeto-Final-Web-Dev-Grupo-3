@@ -10,7 +10,7 @@ import { useContext } from "react";
 import { LojaContext } from "../context/LojaContext";
 
 const CardLogin = () => {
-    const {email, senha, setEmail, setSenha, usuarios, setUsuarios} = useContext(LojaContext)
+    const {email, senha, setEmail, setSenha, usuarios, setUsuarios, usuarioLogado, setUsuarioLogado} = useContext(LojaContext)
 
   const handleLimpar = () => {
     setEmail("");
@@ -19,17 +19,21 @@ const CardLogin = () => {
 
   const getUsuarios = async () => {
     const response = await api.get('/users')
-    setUsuarios(() => {
-      return [...response.data]
-    })
+    setUsuarios(response.data)
   }
-    const handleLogar = async (e) => {
+    const handleLogar = (e) => {
       e.preventDefault()
-      const response = await getUsuarios()
-      if(email==usuarios.email && senha == usuarios.senha){
-        alert('logado com sucesso!')
-      }
+      setUsuarioLogado('')
+      const response = getUsuarios()
+      usuarios.map((usuario) => {
+        if(email==usuario.email && senha == usuario.senha){
+          setUsuarioLogado(usuario.id)
+          alert('logado com sucesso!')
+        }else{alert('Não foi possível realizar o login, verifique as informações')}
+      })
+      
       alert(`${email}, ${senha}`)
+      console.log({usuarioLogado})
       handleLimpar()
     }
 

@@ -20,14 +20,7 @@ const CardProdutos = ({ id, nome, favoritos, imgurl, preco }) => {
     getProdutos()
   }
 
-    
-    const handleRemover = () => {
-        api.delete(`/posts/${id}`)
-        getProdutos()
-    }
-
     return (
-
           <Col key={id}>
             <Card style={{ width: '20rem', margin:'2rem', height:'20rem' }}>
               <Card.Img style={{maxHeight:'10rem', maxWidth:'10rem'}} variant="top" src={imgurl} />

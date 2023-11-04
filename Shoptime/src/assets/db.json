@@ -1,0 +1,84 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "nome": "admin@admin",
+      "email": "Raphael da Rocha Pinto",
+      "senha": "123456",
+      "pedidos": []
+    }
+  ],
+  "produtos": [
+    {
+      "id": 1,
+      "nome": "Mouse com fio Logitech",
+      "preco": 29.99,
+      "quantidade": 37,
+      "descricao": "Mouse com fio USB Logitech M90 com Design Ambidestro e Facilidade Plug and Play",
+      "imgurl": "https://m.media-amazon.com/images/I/617w9nbQooL.__AC_SX300_SY300_QL70_ML2_.jpg",
+      "favoritos": 15
+    },
+    {
+      "id": 2,
+      "nome": "Bola de Futevôlei",
+      "preco": 39.99,
+      "quantidade": 17,
+      "descricao": "Bola redonda e que rola feita para ser chutada.",
+      "imgurl": "https://i.zst.com.br/thumbs/12/6/16/1949710756.jpg",
+      "favoritos": 47
+    },
+    {
+      "id": 3,
+      "nome": "Máquina de clonagem",
+      "preco": 12939.99,
+      "quantidade": 826,
+      "descricao": "Máquina simples usada para clonagem de nível celular.",
+      "imgurl": "https://s2.glbimg.com/SV9nyuaDYTlEHHwBMf3mW1n59_w=/e.glbimg.com/og/ed/f/original/2016/07/05/dolly_face_closeup.jpg",
+      "favoritos": 424
+    },
+    {
+      "id": 4,
+      "nome": "Skate RGB",
+      "preco": 169.99,
+      "quantidade": 60,
+      "descricao": "Skate gamer que brilha enquanto você manda aquele kickflip maneiro.",
+      "imgurl": "https://ae01.alicdn.com/kf/H995d06a0f7d748f09f362da7182af8cfz/Skate-esportivo-3d-led-usb-l-mpada-tridimensional-inovativa-desktops-downlights-controlador-rgb-toque-remoto-decora.jpg",
+      "favoritos": 15
+    },
+    {
+      "id": 5,
+      "nome": "Pote de Lenços Gatinho Contente™",
+      "preco": 699.99,
+      "quantidade": 37,
+      "descricao": "Um versátil, prático e contente recipiente que pode guardar até 300 lenços de papel.",
+      "imgurl": "https://m.media-amazon.com/images/I/41imwlUhEzL._AC_UF1000,1000_QL80_.jpg",
+      "favoritos": 27956
+    },
+    {
+      "id": 6,
+      "nome": "MOUSE MARS UKV-01 COORDINATE INPUT DEVICE",
+      "preco": 1200.99,
+      "quantidade": 7,
+      "descricao": "Mouse com fio soviético nada prático e/ou funcional.",
+      "imgurl": "https://i.imgur.com/l1muUsq.png",
+      "favoritos": 0
+    }
+  ],
+  "pedidos": [
+    {
+      "id": 1,
+      "valorTotal": 299.9,
+      "idUser": 1,
+      "itens": [
+        {
+          "idProduto": 1,
+          "quantidade": 10
+        },
+        {
+          "idProduto": 2,
+          "quantidade": 5
+        }
+      ]
+    }
+  ]
+}
