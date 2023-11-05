@@ -7,7 +7,7 @@ import { LojaContext } from "../../context/LojaContext.jsx";
   const Produto = () => {
     const [produto, setProduto] = useState({})
 
-    const {quantidade, setQuantidade} = useContext(LojaContext)
+    const {quantidade, setQuantidade, produtosCarrinho, setProdutosCarrinho} = useContext(LojaContext)
 
     const { id } = useParams()
   
@@ -34,46 +34,57 @@ import { LojaContext } from "../../context/LojaContext.jsx";
         setQuantidade(quantidade - 1);
       }
     };
+
+    const handleAddCarrinho = () => {
+      if(quantidade>0){
+        produtosCarrinho.push({...produto, quantidade:quantidade})
+        alert('Produto adicionado ao carrinho!')
+      }else{
+        alert('Insira uma quantidade maior que zero ao carrinho!')}
+    }
   
     return (
-      <Container style={{ paddingTop:"1.5rem"}}>
-        <CardGroup style={{ minHeight:"35rem"}}>
-          <Card>
-          <Card.Img style={{height:'40vh',  objectFit:'contain'}} variant="top" src={produto.imgurl} />
-          </Card>
-          <Card>
-            <Card.Body>
-              <Card.Title className="d-flex justify-content-between">
-                {produto.nome}
-                <Button onClick={() => {
-                  handleLike(produto.id, produto.favoritos)
-                }} variant="danger">❤️{produto.favoritos}</Button>
-              </Card.Title>
-              <Card.Text>
-                R$ {produto.preco}
-                <br />
-                {produto.descricao}
-              </Card.Text>
-            </Card.Body>
-            <Card.Footer className="d-flex justify-content-between">
-              <InputGroup className="mb-1">
-                <Button variant="secondary" onClick={handleDiminuir}>
-                  -
-                </Button>
-                <span className="p-2" style={{backgroundColor:"#6c757d", color:"#FFFFFF" }} >{quantidade}</span>
-                <Button variant="secondary" onClick={handleAumentar}>
-                  +
-                </Button>
-              </InputGroup>
-              <div className="d-flex">
-                <button type="submit" className="btn btn-primary mx-1">
-                  Add ao Carrinho
-                </button>
-              </div>
-            </Card.Footer>
-          </Card>
-        </CardGroup>
-      </Container>
+      <div style={{minHeight:'100vh', display: 'flex',
+      flexDirection: 'column'}}>  
+        <Container style={{ paddingTop:"1.5rem"}}>
+          <CardGroup style={{ minHeight:"35rem"}}>
+            <Card>
+            <Card.Img style={{height:'40vh',  objectFit:'contain'}} variant="top" src={produto.imgurl} />
+            </Card>
+            <Card>
+              <Card.Body>
+                <Card.Title className="d-flex justify-content-between">
+                  {produto.nome}
+                  <Button onClick={() => {
+                    handleLike(produto.id, produto.favoritos)
+                  }} variant="danger">❤️{produto.favoritos}</Button>
+                </Card.Title>
+                <Card.Text>
+                  R$ {produto.preco}
+                  <br />
+                  {produto.descricao}
+                </Card.Text>
+              </Card.Body>
+              <Card.Footer className="d-flex justify-content-between">
+                <InputGroup className="mb-1">
+                  <Button variant="secondary" onClick={handleDiminuir}>
+                    -
+                  </Button>
+                  <span className="p-2" style={{backgroundColor:"#6c757d", color:"#FFFFFF" }} >{quantidade}</span>
+                  <Button variant="secondary" onClick={handleAumentar}>
+                    +
+                  </Button>
+                </InputGroup>
+                <div className="d-flex">
+                  <button onClick={handleAddCarrinho} type="submit" className="btn btn-primary mx-1">
+                    Add ao Carrinho
+                  </button>
+                </div>
+              </Card.Footer>
+            </Card>
+          </CardGroup>
+        </Container>
+      </div>
     );
   };
   

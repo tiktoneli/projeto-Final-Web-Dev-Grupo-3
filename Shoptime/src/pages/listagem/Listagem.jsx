@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { api } from "../../api/api";
 import CardProdutos from "../../components/CardProdutos";
 import { Container, Row } from "react-bootstrap";
@@ -14,7 +14,9 @@ const Listagem = () => {
   }
 
   return (
-      <>
+
+      <div style={{minHeight:'100vh', display: 'flex',
+        flexDirection: 'column'}}>
         <Container className="d-flex justify-content-between flex-wrap" >
           {produtos.map(
               ({  id, nome, preco, quantidade, descricao, favoritos, imgurl}) => (
@@ -34,7 +36,7 @@ const Listagem = () => {
               )
           )}
         </Container>   
-      </>
+      </div>
   )
 }
 export default Listagem

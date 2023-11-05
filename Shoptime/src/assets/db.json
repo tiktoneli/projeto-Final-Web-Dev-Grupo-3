@@ -23,7 +23,7 @@
       "quantidade": 37,
       "descricao": "Mouse com fio USB Logitech M90 com Design Ambidestro e Facilidade Plug and Play",
       "imgurl": "https://m.media-amazon.com/images/I/617w9nbQooL.__AC_SX300_SY300_QL70_ML2_.jpg",
-      "favoritos": 15
+      "favoritos": 27
     },
     {
       "id": 2,
@@ -32,7 +32,7 @@
       "quantidade": 17,
       "descricao": "Bola redonda e que rola feita para ser chutada.",
       "imgurl": "https://i.zst.com.br/thumbs/12/6/16/1949710756.jpg",
-      "favoritos": 47
+      "favoritos": 56
     },
     {
       "id": 3,
@@ -41,7 +41,7 @@
       "quantidade": 826,
       "descricao": "Máquina simples usada para clonagem de nível celular.",
       "imgurl": "https://s2.glbimg.com/SV9nyuaDYTlEHHwBMf3mW1n59_w=/e.glbimg.com/og/ed/f/original/2016/07/05/dolly_face_closeup.jpg",
-      "favoritos": 424
+      "favoritos": 467
     },
     {
       "id": 4,
@@ -59,7 +59,7 @@
       "quantidade": 37,
       "descricao": "Um versátil, prático e contente recipiente que pode guardar até 300 lenços de papel.",
       "imgurl": "https://m.media-amazon.com/images/I/41imwlUhEzL._AC_UF1000,1000_QL80_.jpg",
-      "favoritos": 27956
+      "favoritos": 28010
     },
     {
       "id": 6,
@@ -70,12 +70,58 @@
       "imgurl": "https://i.imgur.com/l1muUsq.png",
       "favoritos": 0
     }
+    
   ],
   "pedidos": [
     {
       "id": 1,
       "valorTotal": 299.9,
       "idUser": 1,
+      "itens": [
+        {
+          "idProduto": 1,
+          "quantidade": 10
+        },
+        {
+          "idProduto": 2,
+          "quantidade": 5
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "valorTotal": 299.9,
+      "idUser": 1,
+      "itens": [
+        {
+          "idProduto": 1,
+          "quantidade": 10
+        },
+        {
+          "idProduto": 2,
+          "quantidade": 5
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "valorTotal": 299.9,
+      "idUser": 1,
+      "itens": [
+        {
+          "idProduto": 1,
+          "quantidade": 10
+        },
+        {
+          "idProduto": 2,
+          "quantidade": 5
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "valorTotal": 299.9,
+      "idUser": 2,
       "itens": [
         {
           "idProduto": 1,

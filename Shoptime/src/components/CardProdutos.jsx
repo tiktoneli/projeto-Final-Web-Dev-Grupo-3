@@ -7,7 +7,7 @@ import { useContext } from "react";
 
 
 const CardProdutos = ({ id, nome, favoritos, imgurl, preco }) => {
-  const {setProdutos} = useContext(LojaContext)
+  const {setProdutos, produtosCarrinho, setQuantidadeCarrinho, quantidadeCarrinho} = useContext(LojaContext)
   
   const getProdutos = async () => {
     const response = await api.get(`/produtos`)
@@ -20,12 +20,24 @@ const CardProdutos = ({ id, nome, favoritos, imgurl, preco }) => {
     getProdutos()
   }
 
+  const handleAddCarrinho = () => {
+    const produto = {
+      nome: nome,
+      favoritos: favoritos,
+      imgurl: imgurl,
+      preco: preco,
+      quantidade: 1
+    }
+    produtosCarrinho.push(produto)
+    alert('Produto adicionado ao carrinho!')
+    console.log(produtosCarrinho)
+  }
     return (
           <Col key={id}>
             <Card style={{ width: '20rem', margin:'2rem', height:'20rem' }}>
               <Card.Img style={{maxHeight:'10rem', objectFit:'contain'}} variant="top" src={imgurl} />
               <span style={{ position: 'absolute', bottom: '10px', right: '10px' }}>
-                <Button variant="success">🛒</Button>
+                <Button onClick={handleAddCarrinho} variant="success">🛒</Button>
 
                 <Button onClick={handleLike} variant="danger">❤️{favoritos}</Button>
 

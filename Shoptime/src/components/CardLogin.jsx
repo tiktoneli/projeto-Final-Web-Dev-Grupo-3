@@ -10,6 +10,8 @@ import { useContext, useEffect } from "react";
 import { LojaContext } from "../context/LojaContext";
 import { useNavigate } from "react-router-dom";
 
+import FundoSem from '../assets/FundoSem.png'
+
 const CardLogin = () => {
     const {email, senha, setEmail, setSenha, usuarios, setUsuarios, usuarioLogado, setUsuarioLogado} = useContext(LojaContext)
 
@@ -68,7 +70,6 @@ const CardLogin = () => {
           </Button>
         </Form>
       </Card.Body>
-      
     </Card>
   </Container>
     )

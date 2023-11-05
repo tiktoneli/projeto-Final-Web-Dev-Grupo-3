@@ -1,31 +1,53 @@
-import { api } from "../../api/api"
-import React, { useState, useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
+import { LojaContext } from "../../context/LojaContext";
+import { Button } from "react-bootstrap";
 
 const Carrinho = () => {
-  const [items, setItems] = useState([]);
-  const [total, setTotal] = useState(0);
+
+  const {setProdutosCarrinho, total, setTotal, produtosCarrinho, usuarioLogado} = useContext(LojaContext)
 
   useEffect(() => {
+    setTotal(0)
+    handleSomarTotal()
+  },[])
 
-    const response = api.get('/pedidos') 
-      const carrinhoItens = response.itens;
-      const carrinhoTotal = response.valorTotal;
-      setItems([carrinhoItens]);
-      setTotal(carrinhoTotal);
+  const handleRemoverCarrinho = (nome) => {
+    const prodCarrinhoFiltrado = produtosCarrinho.filter((prod) => prod.nome != nome)
+    setProdutosCarrinho(prodCarrinhoFiltrado)
+    alert('Produto removido do carrinho!')
+    handleDiminuirTotal(prodCarrinhoFiltrado)
+  }
 
-  }, []);
+  const handleSomarTotal = () => {
+    produtosCarrinho.map((prod) => {
+      setTotal(total+(prod.preco * prod.quantidade))
+    })
+  }
+
+  const handleDiminuirTotal = (prodExcl) => {
+    const prodCarrinhoRemover = produtosCarrinho.filter((prod) => prodExcl.nome == prod.nome)
+    console.log(prodCarrinhoRemover.nome)
+    console.log(prodExcl.nome)
+    setTotal(total-(prodCarrinhoRemover.preco * prodCarrinhoRemover.quantidade))
+  }
 
   return (
-    <div>
+    <div style={{minHeight:'100vh', display: 'flex',
+    flexDirection: 'column'}}>
       <h1>Carrinho de Compras</h1>
       <ul>
-        {items.map((item) => (
+        {produtosCarrinho.map((prod) => (
           <li>
-            {item.nome} - R$ {item.preco}
+            <p>Nome: {prod.nome}</p>
+            <p>Quantidade: {prod.quantidade}</p>
+            <p>R$ {(prod.preco * prod.quantidade).toFixed(2)}</p>
+            <Button onClick={() => {
+              handleRemoverCarrinho(prod.nome)
+            }}>Remover</Button>
           </li>
         ))}
-      </ul>
       <p>Total: R$ {total}</p>
+      </ul>
     </div>
   );
 };

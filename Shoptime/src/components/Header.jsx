@@ -5,6 +5,9 @@ import { Button, Col, Form, Navbar, Row } from "react-bootstrap";
 import { LojaContext } from "../context/LojaContext";
 import { api } from "../api/api";
 import { FaMagnifyingGlass } from 'react-icons/fa6'
+import Logo from '../assets/Logo.png'
+import {IoPersonCircleOutline} from 'react-icons/io5'
+import Cart from '../assets/Cart.png'
 
 const Header = () => {
   const [filtroNome, setFiltroNome] = useState("");
@@ -48,20 +51,24 @@ const Header = () => {
 
   return (
     <>
-      <Navbar style={{ padding:"10px" }} bg="primary" variant="dark" className="justify-content-between">
+      <Navbar style={{backgroundColor: 'SlateBlue', maxHeight:'80px'}} variant="dark" className="justify-content-between">
         <Form inline>
+          <div style={{display:'flex'}}>
           <Link style={{ marginRight: "20px" }} to={"/"}>
-            <img src="" />
-            LOGO AQUI
+            <img style={{maxHeight:'50px'}} src={Logo} />
           </Link>
-          <Link to={"/home"}>
-            <Navbar.Brand href="#home">Login</Navbar.Brand>
-          </Link>
+          </div>
         </Form>
+        
         <Form inline>
           <Row>
+            <Col xs='auto'>
+              <Link to={"/home"}>
+                <Navbar.Brand href="#home"><IoPersonCircleOutline style={{marginTop:'20px'}} size={43}/></Navbar.Brand>
+              </Link>
+            </Col>
             <Col xs="auto">
-              <Form.Control
+              <Form.Control style={{marginTop:'24px'}}
                 type="text"
                 placeholder="Search"
                 className=" mr-sm-2"
@@ -69,17 +76,17 @@ const Header = () => {
               />
             </Col>
             <Col xs="auto">
-              <Button type="submit" onClick={handleNavigateFiltro}>
+              <Button style={{marginTop:'29px', backgroundColor:'darkorange', opacity:'0.8'}} type="submit" onClick={handleNavigateFiltro}>
                 <FaMagnifyingGlass/>
               </Button>
             </Col>
             <Col xs="auto">
-              <Button type="submit" variant="danger" onClick={getProdutos}>
+              <Button style={{marginTop:'24px'}} type="submit" variant="danger" onClick={getProdutos}>
                 Limpar Pesquisa
               </Button>
             </Col>
-            <Col xs="auto">
-              <Link to={'/carrinho'}><Button variant="success">🛒</Button></Link>
+            <Col style={{marginTop:'14px'}} xs="auto">
+              <Link to={'/carrinho'}><img style={{maxHeight:'50px'}} src={Cart} /></Link>
             </Col>
           </Row>
            <p>{textoPesquisa}</p>

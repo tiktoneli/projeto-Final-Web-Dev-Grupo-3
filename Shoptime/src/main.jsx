@@ -14,6 +14,7 @@ import Layout from './Layout.jsx';
 
 import { ChakraProvider } from '@chakra-ui/react'
 import { LojaProvider } from './context/LojaContext.jsx';
+import FundoSem from '../src/assets/FundoSem.png'
 
 const router = createBrowserRouter([
   {
