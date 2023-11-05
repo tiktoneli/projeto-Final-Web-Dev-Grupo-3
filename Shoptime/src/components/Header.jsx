@@ -16,9 +16,11 @@ const Header = () => {
   const { produtos, setProdutos } = useContext(LojaContext);
   const navigate = useNavigate()
 
-  const getProdutos = async () => {
+  const getProdutos = async (e) => {
+    e.preventDefault()
     const response = await api.get("/produtos");
     setProdutos(response.data);
+    setTextoPesquisa('')
   };
 
   useEffect(() => {
@@ -36,6 +38,7 @@ const Header = () => {
 
   //tentativa de pesquisa a partir de qualquer rota
   const handleNavigateFiltro = async (e) => {
+    e.preventDefault()
     navigate('/')
     await handleFiltrar(e)
   }
@@ -89,9 +92,10 @@ const Header = () => {
               <Link to={'/carrinho'}><img style={{maxHeight:'50px'}} src={Cart} /></Link>
             </Col>
           </Row>
-           <p>{textoPesquisa}</p>
+           
         </Form>
       </Navbar>
+      <p style={{fontSize:'1.3rem' ,textAlign:'center', marginTop:'0', marginBottom:'0px', fontWeight:''}}><em>{textoPesquisa}</em></p>
     </>
   );
 };

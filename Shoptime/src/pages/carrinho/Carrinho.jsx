@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { LojaContext } from "../../context/LojaContext";
 import { Button, Card, Container, Table } from "react-bootstrap";
+import { api } from "../../api/api";
 
 const Carrinho = () => {
   const {
@@ -9,6 +10,7 @@ const Carrinho = () => {
     setTotal,
     produtosCarrinho,
     usuarioLogado,
+    produtos,
   } = useContext(LojaContext);
   const [nomeUsuario, setNomeUsuario] = useState("");
 
@@ -32,11 +34,40 @@ const Carrinho = () => {
     setTotal(total - valorRemovido);
   };
 
-  const handleSomarTotal = () => {
-    produtosCarrinho.map((prod) => {
-      setTotal(total + prod.preco * prod.quantidade);
+  const handleFinalizarPedido = async () => {
+    if(!usuarioLogado.id == 0){
+      if(!produtosCarrinho.length == 0){
+
+    const prod = produtosCarrinho.map(({ id, quantidade }) => ({ idProduto: id, quantidade }));
+    const novoPedido = 
+    {
+      valorTotal:total,
+      idUser:usuarioLogado.id,
+      itens:prod
+    }
+
+    await api.post('/pedidos', novoPedido)
+    handleDiminuirEstoque()
+    alert('Compra realizada com sucesso! Pode ver os detalhes do pedido no seu perfil!')
+    handleEsvaziarCarrinho()
+    }else{alert('Adicione um produto ao carrinho antes de finalizar o pedido!')}
+  }else{alert('Por favor, realize o login para finalizar o pedido')}
+  }
+
+  const handleEsvaziarCarrinho = () => {
+    setProdutosCarrinho([])
+  }
+
+  const handleDiminuirEstoque = async () => {
+    //um map dentro do outro, pra cada produto da loja, checa se é igual a cada produto do carrinho, se for, faz um patch
+    produtos.map(async (produto) => {
+      produtosCarrinho.map((prodCarrinho) => {
+        if (prodCarrinho.id == produto.id){
+          api.patch(`/produtos/${produto.id}`, {quantidade: produto.quantidade - prodCarrinho.quantidade})
+        }
+      })  
     });
-  };
+  }
 
   return (
     <div
@@ -101,7 +132,10 @@ const Carrinho = () => {
             </tfoot>
           </Table>
           <div className="mt-3 d-flex justify-content-end">
-            <Button variant="primary">Finalizar Pedido</Button>
+            <Button onClick={handleFinalizarPedido} variant="primary">Finalizar Pedido</Button>
+          </div>
+          <div className="mt-3 d-flex justify-content-end">
+            <Button onClick={handleEsvaziarCarrinho} variant="danger">Esvaziar Carrinho</Button>
           </div>
         </Card>
       </Container>

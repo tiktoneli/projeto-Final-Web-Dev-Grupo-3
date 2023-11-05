@@ -35,13 +35,23 @@ import { LojaContext } from "../../context/LojaContext.jsx";
       }
     };
 
-    const handleAddCarrinho = () => {
-      if(quantidade>0){
-        produtosCarrinho.push({...produto, quantidade:quantidade})
-        alert('Produto adicionado ao carrinho!')
-      }else{
-        alert('Insira uma quantidade maior que zero ao carrinho!')}
-    }
+    const handleAdicionarCarrinho = () => {
+      const produtoExistente = produtosCarrinho.find((prod) => prod.id == id);
+      console.log([produtosCarrinho])
+      console.log({produto})
+      if (produtoExistente) {
+        alert('produto existe')
+        const produtosAtualizados = produtosCarrinho.map((prod) =>
+          prod.id == id ? { ...prod, quantidade: prod.quantidade + quantidade } : prod
+        );
+        setProdutosCarrinho(produtosAtualizados);
+      } else {
+        alert('produto não existe');
+        setProdutosCarrinho([...produtosCarrinho, produto]);
+      }
+    
+      alert('Produto adicionado ao carrinho!');
+    };
   
     return (
       <div style={{minHeight:'100vh', display: 'flex',
@@ -76,7 +86,7 @@ import { LojaContext } from "../../context/LojaContext.jsx";
                   </Button>
                 </InputGroup>
                 <div className="d-flex">
-                  <button onClick={handleAddCarrinho} type="submit" className="btn btn-primary mx-1">
+                  <button onClick={handleAdicionarCarrinho} type="submit" className="btn btn-primary mx-1">
                     Add ao Carrinho
                   </button>
                 </div>

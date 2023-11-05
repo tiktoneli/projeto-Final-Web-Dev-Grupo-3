@@ -21,11 +21,11 @@ const CardProdutos = ({ id, nome, favoritos, imgurl, preco }) => {
   }
 
   const handleAdicionarCarrinho = () => {
-    const produtoExistente = produtosCarrinho.find((produto) => produto.id === id);
+    const produtoExistente = produtosCarrinho.find((produto) => produto.id == id);
   
     if (produtoExistente) {
       const produtosAtualizados = produtosCarrinho.map((produto) =>
-        produto.id === id ? { ...produto, quantidade: produto.quantidade + 1 } : produto
+        produto.id == id ? { ...produto, quantidade: produto.quantidade + 1 } : produto
       );
       setProdutosCarrinho(produtosAtualizados);
     } else {
@@ -42,8 +42,6 @@ const CardProdutos = ({ id, nome, favoritos, imgurl, preco }) => {
   
     alert('Produto adicionado ao carrinho!');
   };
-  
-  
 
     return (
           <Col key={id}>
