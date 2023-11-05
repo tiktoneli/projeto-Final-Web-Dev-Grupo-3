@@ -7,7 +7,7 @@ import { useContext } from "react";
 
 
 const CardProdutos = ({ id, nome, favoritos, imgurl, preco }) => {
-  const {setProdutos, produtosCarrinho, setQuantidadeCarrinho, quantidadeCarrinho} = useContext(LojaContext)
+  const {setProdutos, produtosCarrinho, setProdutosCarrinho, setQuantidadeCarrinho, quantidadeCarrinho} = useContext(LojaContext)
   
   const getProdutos = async () => {
     const response = await api.get(`/produtos`)
@@ -20,24 +20,37 @@ const CardProdutos = ({ id, nome, favoritos, imgurl, preco }) => {
     getProdutos()
   }
 
-  const handleAddCarrinho = () => {
-    const produto = {
-      nome: nome,
-      favoritos: favoritos,
-      imgurl: imgurl,
-      preco: preco,
-      quantidade: 1
+  const handleAdicionarCarrinho = () => {
+    const produtoExistente = produtosCarrinho.find((produto) => produto.id === id);
+  
+    if (produtoExistente) {
+      const produtosAtualizados = produtosCarrinho.map((produto) =>
+        produto.id === id ? { ...produto, quantidade: produto.quantidade + 1 } : produto
+      );
+      setProdutosCarrinho(produtosAtualizados);
+    } else {
+      const produto = {
+        id: id,
+        nome: nome,
+        favoritos: favoritos,
+        imgurl: imgurl,
+        preco: preco,
+        quantidade: 1,
+      };
+      setProdutosCarrinho([...produtosCarrinho, produto]);
     }
-    produtosCarrinho.push(produto)
-    alert('Produto adicionado ao carrinho!')
-    console.log(produtosCarrinho)
-  }
+  
+    alert('Produto adicionado ao carrinho!');
+  };
+  
+  
+
     return (
           <Col key={id}>
             <Card style={{ width: '20rem', margin:'2rem', height:'20rem' }}>
               <Card.Img style={{maxHeight:'10rem', objectFit:'contain'}} variant="top" src={imgurl} />
               <span style={{ position: 'absolute', bottom: '10px', right: '10px' }}>
-                <Button onClick={handleAddCarrinho} variant="success">🛒</Button>
+                <Button onClick={handleAdicionarCarrinho} variant="success">🛒</Button>
 
                 <Button onClick={handleLike} variant="danger">❤️{favoritos}</Button>
 
