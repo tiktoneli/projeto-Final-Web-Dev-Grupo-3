@@ -5,7 +5,7 @@ Como projeto final da Disciplina WEB do SERRATEC, o desafio proposto é a criaç
 aplicação “e-commerce”.  
 
 Objetivos:  
-1. Criar uma aplicação React que disponibilize produtos para que um usuário possa,
+ Criar uma aplicação React que disponibilize produtos para que um usuário possa,
 conforme navega pelo site, incluir os produtos desejados no Carrinho e no
 momento que quiser, realizar a compra dos produtos selecionados.
 Especificações  
@@ -13,44 +13,45 @@ Para a execução do projeto é necessário deixar as seguintes considerações 
 tem que ser feito:
 
 1. Tela de Login, solicitando:  
-a. Email  
-b. Senha  
+a. Email  👌
+b. Senha  👌
 
 2. Tela de Listagem de Produtos:  
-a. Nesta tela deverá ser possível filtrar um produto pelo nome do mesmo.  
-b. Não deverão ser exibidos os produtos sem quantidade em estoque.  
+a. Nesta tela deverá ser possível filtrar um produto pelo nome do mesmo.  👌
+b. Não deverão ser exibidos os produtos sem quantidade em estoque.  ❌
 
 3. Tela de informação sobre um produto específico.  
-a. Nesta tela, o produto será descrito por completo.  
+a. Nesta tela, o produto será descrito por completo.  👌
 
 4. Tela ou Modal para Carrinho:  
-a. Qualquer produto poderá ser adicionado no carrinho.  
-b. O usuário escolherá a quantidade e incluirá no carrinho.  
-c. Opção para esvaziar o carrinho.  
-d. O carrinho deve ser acessível de qualquer rota  
+a. Qualquer produto poderá ser adicionado no carrinho.  👌
+b. O usuário escolherá a quantidade e incluirá no carrinho.  👌
+c. Opção para esvaziar o carrinho.  👌
+d. O carrinho deve ser acessível de qualquer rota  👌
 
 5. Caso o usuário queira comprar, o mesmo poderá acessar o carrinho onde irá
 finalizar a compra.  
 
 a. Por termos a limitação da API, ao finalizar a compra, deverá ser realizada
 requisição para diminuir a quantidade de produtos logo após a finalização da
-compra.  
+compra.  👌
 b. Após os passos acima redirecionar para a tela de Pedidos realizados, onde
-conterá uma listagem de todos os pedidos feitos por aquele usuário.  
-
-2  
+conterá uma listagem de todos os pedidos feitos por aquele usuário.  ❌
+____________________________________________________________________________________
 Extras:  
-● Tela de Cadastro de Usuário, com os campos:  
+● Tela de Cadastro de Usuário, com os campos:  ❌
     ○ Nome completo  
     ○ Email  
     ○ Senha  
 
-● Permitir ver os produtos por categoria, utilizando rotas dinâmicas.  
+● Permitir ver os produtos por categoria, utilizando rotas dinâmicas.  ❌
 ● Dentro da tela de um produto específico será possível avaliar o produto
 como gostei ou não gostei. Qualquer usuário que logar na aplicação, irá ver a
-nota dada por outros usuários.  
+nota dada por outros usuários.  ❌
 ● Ao finalizar a compra a mesma deverá ser registrada via API na rota de
-pedidos.  
+pedidos. 👌
+
+____________________________________________________________________________________
 Regras:  
 ● Não será permitido utilizar Tailwindcss e Bootstrap.  
 ● Qualquer biblioteca de componentes pode ser utilizada.  
