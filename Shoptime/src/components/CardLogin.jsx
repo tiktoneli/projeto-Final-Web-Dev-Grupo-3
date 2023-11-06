@@ -33,6 +33,7 @@ const CardLogin = () => {
     e.preventDefault()
     const response = await api.get('/users', {
       params: {email: email, senha: senha}
+      
     })
     setUsuarioLogado(response.data[0])
 
@@ -41,7 +42,8 @@ const CardLogin = () => {
     }else{ 
 
       fetchPedidos(response.data[0].id)
-      navigate('/')
+      alert('Usuário logado com sucesso!')
+      navigate('/home')
   }
   }
 

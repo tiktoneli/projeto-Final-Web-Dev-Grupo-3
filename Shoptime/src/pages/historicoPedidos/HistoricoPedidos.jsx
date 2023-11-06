@@ -13,7 +13,7 @@ const HistoricoPedidos = () => {
   useEffect(() => {
     if (!usuarioLogado.nome){
       alert('Faça o login para ver seus pedidos feitos!')
-      navigate('/home')
+      navigate('/')
     }
 
     fetchPedidos()

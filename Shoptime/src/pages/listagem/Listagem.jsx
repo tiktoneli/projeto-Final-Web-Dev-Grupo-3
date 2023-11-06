@@ -12,12 +12,11 @@ const Listagem = () => {
   const getProdutos = async () => {
       const response = await api.get('/produtos')
       setProdutos(response.data)
+      setProdutosExibidos((produtos.filter((prod) => prod.quantidade > 0 )))
   }
 
-  
-
   useEffect( () => {
-    setProdutosExibidos((produtos.filter((prod) => prod.quantidade > 0 )))
+    getProdutos()
   },[])
 
   return (
