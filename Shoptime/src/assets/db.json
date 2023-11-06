@@ -29,7 +29,7 @@
       "id": 2,
       "nome": "Bola de Futevôlei",
       "preco": 39.99,
-      "quantidade": 15,
+      "quantidade": 14,
       "descricao": "Bola redonda e que rola feita para ser chutada.",
       "imgurl": "https://i.zst.com.br/thumbs/12/6/16/1949710756.jpg",
       "favoritos": 57
@@ -56,7 +56,7 @@
       "id": 5,
       "nome": "Pote de Lenços Gatinho Contente™",
       "preco": 699.99,
-      "quantidade": 37,
+      "quantidade": 27,
       "descricao": "Um versátil, prático e contente recipiente que pode guardar até 300 lenços de papel.",
       "imgurl": "https://m.media-amazon.com/images/I/41imwlUhEzL._AC_UF1000,1000_QL80_.jpg",
       "favoritos": 28010
@@ -65,7 +65,7 @@
       "id": 6,
       "nome": "MOUSE MARS UKV-01 COORDINATE INPUT DEVICE",
       "preco": 1200.99,
-      "quantidade": 7,
+      "quantidade": 6,
       "descricao": "Mouse com fio soviético nada prático e/ou funcional.",
       "imgurl": "https://i.imgur.com/l1muUsq.png",
       "favoritos": 1
@@ -213,6 +213,32 @@
         }
       ],
       "id": 11
+    },
+    {
+      "valorTotal": 8200.89,
+      "idUser": 1,
+      "itens": [
+        {
+          "idProduto": 5,
+          "quantidade": 10
+        },
+        {
+          "idProduto": 6,
+          "quantidade": 1
+        }
+      ],
+      "id": 12
+    },
+    {
+      "valorTotal": 39.99,
+      "idUser": 1,
+      "itens": [
+        {
+          "idProduto": 2,
+          "quantidade": 1
+        }
+      ],
+      "id": 13
     }
   ]
 }

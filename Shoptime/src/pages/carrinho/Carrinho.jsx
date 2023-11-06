@@ -37,8 +37,10 @@ const Carrinho = () => {
   const handleFinalizarPedido = async () => {
     if(!usuarioLogado.id == 0){
       if(!produtosCarrinho.length == 0){
+        alert('entrei no handle')
 
-    const prod = produtosCarrinho.map(({ id, quantidadeCarrinho }) => ({ idProduto: id, quantidadeCarrinho: quantidade }));
+    const prod = produtosCarrinho.map(({ id, quantidadeCarrinho }) => ({ idProduto: id, quantidade: quantidadeCarrinho }));
+
     const novoPedido = 
     {
       valorTotal:total,
@@ -60,10 +62,10 @@ const Carrinho = () => {
 
   const handleDiminuirEstoque = async () => {
     //um map dentro do outro, pra cada produto da loja, checa se é igual a cada produto do carrinho, se for, faz um patch
-    produtos.map(async (produto) => {
-      produtosCarrinho.map((prodCarrinho) => {
+    produtos.map((produto) => {
+      produtosCarrinho.map(async (prodCarrinho) => {
         if (prodCarrinho.id == produto.id){
-          api.patch(`/produtos/${produto.id}`, {quantidade: produto.quantidade - prodCarrinho.quantidadeCarrinho})
+        await api.patch(`/produtos/${produto.id}`, {quantidade: produto.quantidade - prodCarrinho.quantidadeCarrinho})
         }
       })  
     });
