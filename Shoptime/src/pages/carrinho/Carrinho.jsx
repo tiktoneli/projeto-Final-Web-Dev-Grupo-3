@@ -84,7 +84,7 @@ const Carrinho = () => {
   const fetchPedidos = async (id) => {
     if (usuarioLogado){
       const response = await api.get('/pedidos', {
-        params: {idUser: id}
+        params: {idUser: usuarioLogado.id}
       })
       setPedidos(response.data);
     }

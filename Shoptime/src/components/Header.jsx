@@ -101,7 +101,7 @@ const Header = () => {
               <Button style={{marginTop:'24px', marginLeft:'10px', backgroundColor:'BlanchedAlmond', color:'slateblue', fontWeight:'bold'}} onClick={() => {
                 navigate('/historico')
               }}>
-                Histórico
+                Meus Pedidos
               </Button>
               </Col>
               <Col xs='auto' style={{marginTop:'15px'}}>

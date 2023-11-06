@@ -26,7 +26,7 @@
       "id": 1,
       "nome": "Mouse com fio Logitech",
       "preco": 29.99,
-      "quantidade": 21,
+      "quantidade": 20,
       "descricao": "Mouse com fio USB Logitech M90 com Design Ambidestro e Facilidade Plug and Play",
       "imgurl": "https://m.media-amazon.com/images/I/617w9nbQooL.__AC_SX300_SY300_QL70_ML2_.jpg",
       "favoritos": 37
@@ -44,10 +44,10 @@
       "id": 3,
       "nome": "Máquina de clonagem",
       "preco": 12939.99,
-      "quantidade": 822,
+      "quantidade": 820,
       "descricao": "Máquina simples usada para clonagem de nível celular.",
       "imgurl": "https://s2.glbimg.com/SV9nyuaDYTlEHHwBMf3mW1n59_w=/e.glbimg.com/og/ed/f/original/2016/07/05/dolly_face_closeup.jpg",
-      "favoritos": 493
+      "favoritos": 522
     },
     {
       "id": 4,
@@ -62,7 +62,7 @@
       "id": 5,
       "nome": "Pote de Lenços Gatinho Contente™",
       "preco": 699.99,
-      "quantidade": 18,
+      "quantidade": 17,
       "descricao": "Um versátil, prático e contente recipiente que pode guardar até 300 lenços de papel.",
       "imgurl": "https://m.media-amazon.com/images/I/41imwlUhEzL._AC_UF1000,1000_QL80_.jpg",
       "favoritos": 28019
@@ -193,6 +193,42 @@
         }
       ],
       "id": 8
+    },
+    {
+      "dataPedido": "06/11/2023",
+      "valorTotal": 25879.98,
+      "idUser": 4,
+      "itens": [
+        {
+          "idProduto": 3,
+          "quantidade": 2
+        }
+      ],
+      "id": 9
+    },
+    {
+      "dataPedido": "06/11/2023",
+      "valorTotal": 29.99,
+      "idUser": 4,
+      "itens": [
+        {
+          "idProduto": 1,
+          "quantidade": 1
+        }
+      ],
+      "id": 10
+    },
+    {
+      "dataPedido": "06/11/2023",
+      "valorTotal": 699.99,
+      "idUser": 4,
+      "itens": [
+        {
+          "idProduto": 5,
+          "quantidade": 1
+        }
+      ],
+      "id": 11
     }
   ]
 }

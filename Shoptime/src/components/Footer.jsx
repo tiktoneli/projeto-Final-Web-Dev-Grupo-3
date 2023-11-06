@@ -4,12 +4,6 @@ import {BsInstagram, BsFacebook, BsGithub} from 'react-icons/bs'
 import { Link } from "react-router-dom";
 
 const Footer = () => {
-  const socialIconStyle = {
-    width: "30px",
-    marginRight: "10px",
-    marginBottom: "10px",
-  };
-
   return (
     <div style={{ backgroundColor: 'SlateBlue', paddingBottom: "11px",fontWeight:'bold', color:'BlanchedAlmond' }}>
       <div>
@@ -18,7 +12,7 @@ const Footer = () => {
             <div style={{display:'flex', justifyContent:'space-evenly', margin:'1px', paddingTop:'22px', paddingRight:'80px'}}>
             <h4 style={{ paddingTop:''}}>Redes Sociais</h4>
               <Link to={'https://github.com/tiktoneli/projeto-Final-Web-Dev-Grupo-3'}target={"_blank"}><BsGithub size={30}/></Link>
-              <Link to={'www.facebook.com'}target={"_blank"}><BsFacebook size={30}/></Link>
+              <Link to={'https://www.facebook.com'}target={"_blank"}><BsFacebook size={30}/></Link>
                 <Link to={'https://www.instagram.com/'} target={"_blank"}><BsInstagram size={30}/></Link>
             </div>
           </Col>

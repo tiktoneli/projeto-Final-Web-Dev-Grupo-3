@@ -14,8 +14,8 @@ const Cadastro = () => {
 
   const navigate = useNavigate()
 
-  const handleCasdastrarNovoUsuario = async () => {
-
+  const handleCasdastrarNovoUsuario = async (e) => {
+    e.preventDefault()
     const novoCadastro = {
       nome: nome,
       email: email,
@@ -23,7 +23,7 @@ const Cadastro = () => {
     }
     await api.post('/users', novoCadastro)
     alert('Usuário cadastrado com sucesso!')
-    navigate('/home')
+    navigate('/')
     setEmail('')
     setSenha('')
     setNome('')
@@ -48,26 +48,28 @@ const Cadastro = () => {
         <Card border="primary" style={{ width: "40rem" }}>
           <Card.Header>Cadastro</Card.Header>
           <Card.Body>
-            <Form style={{alignItems: "center"}} >
+            <Form style={{alignItems: "center"}} onSubmit={handleCasdastrarNovoUsuario} >
             <Form.Group className="mb-3" controlId="formBasicNome">
                 <Form.Label >Nome</Form.Label>
-                <Form.Control onChange={handleChangeNome} type="Nome" placeholder="Nome Completo" />
+                <Form.Control required onChange={handleChangeNome} type="text" placeholder="Nome Completo" />
               </Form.Group>
 
               <Form.Group className="mb-3" controlId="formBasicEmail">
                 <Form.Label >Email</Form.Label>
-                <Form.Control onChange={handleChangeEmail} type="email" placeholder="Email" />
+                <Form.Control required onChange={handleChangeEmail} type="email" placeholder="Email" />
               </Form.Group>
 
               <Form.Group className="mb-3" controlId="formBasicPassword">
                 <Form.Label >Senha</Form.Label>
-                <Form.Control onChange={handleChangeSenha} type="password" placeholder="Senha" />
+                <Form.Control required onChange={handleChangeSenha} type="password" placeholder="Senha" />
               </Form.Group>
+              <div style={{display:'flex', justifyContent:'right'}}>
+                <Button variant="info" type="submit" >
+                 Cadastrar
+                </Button>
+           </div>
             </Form>
           </Card.Body>
-          <Button variant="info" onClick={handleCasdastrarNovoUsuario}>
-            Cadastrar
-          </Button>
         </Card>
       </Container>
     </div>
