@@ -3,10 +3,44 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Card from "react-bootstrap/Card";
 import { Container } from "react-bootstrap";
+import { useContext, useState } from "react";
+import { LojaContext } from "../../context/LojaContext";
+import { api } from "../../api/api";
+import { useNavigate } from "react-router-dom";
 
-const Register = () => {
-  //criar estados e variáveis aqui
+const Cadastro = () => {
+  const {email, setEmail, senha, setSenha} = useContext(LojaContext);
+  const [nome, setNome] = useState('')
 
+  const navigate = useNavigate()
+
+  const handleCasdastrarNovoUsuario = async () => {
+
+    const novoCadastro = {
+      nome: nome,
+      email: email,
+      senha: senha  
+    }
+    await api.post('/users', novoCadastro)
+    alert('Usuário cadastrado com sucesso!')
+    navigate('/home')
+    setEmail('')
+    setSenha('')
+    setNome('')
+  }
+
+  const handleChangeNome = (e) => {
+    setNome(e.target.value)
+  }
+
+  const handleChangeEmail = (e) => {
+    setEmail(e.target.value)
+  }
+
+  const handleChangeSenha = (e) => {
+    setSenha(e.target.value)
+  }
+  
   return (
     <div style={{minHeight:'100vh', display: 'flex',
         flexDirection: 'column'}}>
@@ -14,29 +48,26 @@ const Register = () => {
         <Card border="primary" style={{ width: "40rem" }}>
           <Card.Header>Cadastro</Card.Header>
           <Card.Body>
-            <Form style={{alignItems: "center"}}>
+            <Form style={{alignItems: "center"}} >
             <Form.Group className="mb-3" controlId="formBasicNome">
-                <Form.Label>Nome</Form.Label>
+                <Form.Label onChange={handleChangeNome}>Nome</Form.Label>
                 <Form.Control type="Nome" placeholder="Nome Completo" />
               </Form.Group>
 
               <Form.Group className="mb-3" controlId="formBasicEmail">
-                <Form.Label>Email</Form.Label>
+                <Form.Label onChange={handleChangeEmail}>Email</Form.Label>
                 <Form.Control type="email" placeholder="Email" />
               </Form.Group>
 
               <Form.Group className="mb-3" controlId="formBasicPassword">
-                <Form.Label>Senha</Form.Label>
+                <Form.Label onChange={handleChangeSenha}>Senha</Form.Label>
                 <Form.Control type="password" placeholder="Senha" />
               </Form.Group>
 
-              <Form.Group className="mb-3" controlId="formBasicPasswordConfirm">
-                <Form.Label>Confirme a Senha</Form.Label>
-                <Form.Control type="password" placeholder="Confirme a Senha" />
-              </Form.Group>
+              
             </Form>
           </Card.Body>
-          <Button variant="info" type="submit">
+          <Button variant="info" onClick={handleCasdastrarNovoUsuario}>
             Cadastrar
           </Button>
         </Card>
@@ -45,4 +76,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default Cadastro;
