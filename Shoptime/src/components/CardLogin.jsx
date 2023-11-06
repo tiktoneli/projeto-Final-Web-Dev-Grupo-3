@@ -45,6 +45,10 @@ const CardLogin = () => {
   }
   }
 
+  const handleNavigateCadastro = () => {
+    navigate("/cadastro")
+  }
+
   const fetchPedidos = async (id) => {
     if (usuarioLogado){
       const response = await api.get('/pedidos', {
@@ -77,6 +81,9 @@ const CardLogin = () => {
           </Form.Group>
           <Button variant="info" type="submit">
             Submit
+          </Button>
+          <Button variant="sucess" onClick={handleNavigateCadastro}>
+            Cadastre-se
           </Button>
         </Form>
       </Card.Body>

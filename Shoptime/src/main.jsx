@@ -6,7 +6,7 @@ import {
 } from "react-router-dom";
 
 import Listagem from './pages/listagem/Listagem.jsx';
-import Pedidos from './pages/pedidos/pedidos.jsx';
+import Cadastro from './pages/cadastro/Cadastro.jsx';
 import Produto from './pages/produto/Produto.jsx';
 import Carrinho from './pages/carrinho/Carrinho.jsx';
 import Home from './pages/home/Home.jsx';
@@ -40,6 +40,10 @@ const router = createBrowserRouter([
       {
         path:'/historico',
         element:<HistoricoPedidos/>
+      },
+      {
+        path:'/cadastro',
+        element:<Cadastro/>
       }
     ]
   }])
