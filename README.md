@@ -18,7 +18,7 @@ b. Senha  👌
 
 2. Tela de Listagem de Produtos:  
 a. Nesta tela deverá ser possível filtrar um produto pelo nome do mesmo.  👌  
-b. Não deverão ser exibidos os produtos sem quantidade em estoque.  ❌  
+b. Não deverão ser exibidos os produtos sem quantidade em estoque.  👌    
 
 3. Tela de informação sobre um produto específico.  
 a. Nesta tela, o produto será descrito por completo.  👌  
@@ -36,10 +36,10 @@ a. Por termos a limitação da API, ao finalizar a compra, deverá ser realizada
 requisição para diminuir a quantidade de produtos logo após a finalização da
 compra.  👌  
 b. Após os passos acima redirecionar para a tela de Pedidos realizados, onde
-conterá uma listagem de todos os pedidos feitos por aquele usuário.  ❌  
+conterá uma listagem de todos os pedidos feitos por aquele usuário.  👌    
 ____________________________________________________________________________________
 Extras:  
-● Tela de Cadastro de Usuário, com os campos:  ❌  
+● Tela de Cadastro de Usuário, com os campos:  👌    
     ○ Nome completo  
     ○ Email  
     ○ Senha  
