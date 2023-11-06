@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { LojaContext } from "../../context/LojaContext";
 import { Button, Card, Container, Table } from "react-bootstrap";
 import { api } from "../../api/api";
+import {GoTrash} from 'react-icons/go'
 
 const Carrinho = () => {
   const {
@@ -11,9 +12,13 @@ const Carrinho = () => {
     produtosCarrinho,
     usuarioLogado,
     produtos,
+    setPedidos,
+    pedidos
   } = useContext(LojaContext);
   const [nomeUsuario, setNomeUsuario] = useState("");
-
+  useEffect(() => {
+    fetchPedidos(usuarioLogado.id)
+  }, [])
   useEffect(() => {
     setTotal(
       produtosCarrinho.reduce((total, prod) => {
@@ -37,12 +42,15 @@ const Carrinho = () => {
   const handleFinalizarPedido = async () => {
     if(!usuarioLogado.id == 0){
       if(!produtosCarrinho.length == 0){
-        alert('entrei no handle')
 
     const prod = produtosCarrinho.map(({ id, quantidadeCarrinho }) => ({ idProduto: id, quantidade: quantidadeCarrinho }));
 
+    const date = new Date();
+    const dataAtual = date.toLocaleDateString("pt-BR");
+
     const novoPedido = 
     {
+      dataPedido:dataAtual,
       valorTotal:total,
       idUser:usuarioLogado.id,
       itens:prod
@@ -51,9 +59,11 @@ const Carrinho = () => {
     await api.post('/pedidos', novoPedido)
     handleDiminuirEstoque()
     alert('Compra realizada com sucesso! Pode ver os detalhes do pedido no seu perfil!')
+    pedidos.push(novoPedido)
     handleEsvaziarCarrinho()
     }else{alert('Adicione um produto ao carrinho antes de finalizar o pedido!')}
   }else{alert('Por favor, realize o login para finalizar o pedido')}
+    fetchPedidos()
   }
 
   const handleEsvaziarCarrinho = () => {
@@ -71,6 +81,15 @@ const Carrinho = () => {
     });
   }
 
+  const fetchPedidos = async (id) => {
+    if (usuarioLogado){
+      const response = await api.get('/pedidos', {
+        params: {idUser: id}
+      })
+      setPedidos(response.data);
+    }
+  }
+  
   return (
     <div
       style={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}
@@ -108,7 +127,7 @@ const Carrinho = () => {
                   <td>R$ {produto.preco}</td>
                   <td>R$ {(produto.preco * produto.quantidadeCarrinho).toFixed(2)}</td>
                   <td>
-                    <Button
+                    <Button style={{backgroundColor:"BlanchedAlmond", marginLeft:'40px'}}
                       onClick={() =>
                         handleRemoverCarrinho(
                           produto.nome,
@@ -117,7 +136,7 @@ const Carrinho = () => {
                         )
                       }
                     >
-                      Remover
+                      <GoTrash size={20} color="slateBlue "/>
                     </Button>
                   </td>
                 </tr>
@@ -133,11 +152,13 @@ const Carrinho = () => {
               </tr>
             </tfoot>
           </Table>
-          <div className="mt-3 d-flex justify-content-end">
-            <Button onClick={handleFinalizarPedido} variant="primary">Finalizar Pedido</Button>
-          </div>
-          <div className="mt-3 d-flex justify-content-end">
-            <Button onClick={handleEsvaziarCarrinho} variant="danger">Esvaziar Carrinho</Button>
+          <div style={{display:"flex", justifyContent:'center', gap:'20px'}}>
+            <div className="mt-3 d-flex justify-content-end">
+              <Button onClick={handleFinalizarPedido} style={{backgroundColor:'slateblue'}}>Finalizar Pedido</Button>
+            </div>
+            <div className="mt-3 d-flex justify-content-end">
+              <Button onClick={handleEsvaziarCarrinho} style={{backgroundColor:'chocolate' }}>Esvaziar Carrinho</Button>
+            </div>
           </div>
         </Card>
       </Container>

@@ -88,17 +88,17 @@ const Header = () => {
               />
             </Col>
             <Col xs="auto">
-              <Button style={{marginTop:'29px', backgroundColor:'darkorange', opacity:'0.8'}} type="submit" onClick={handleNavigateFiltro}>
+              <Button style={{marginTop:'29px', backgroundColor:'chocolate'}} type="submit" onClick={handleNavigateFiltro}>
                 <FaMagnifyingGlass/>
               </Button>
             </Col>
             <Col xs="auto">
-              <Button style={{marginTop:'24px'}} type="submit" variant="danger" onClick={handleLimparPesquisa}>
+              <Button style={{marginTop:'24px', backgroundColor:'orangered', opacity:'0.9'}} type="submit" onClick={handleLimparPesquisa}>
                 Limpar Pesquisa
               </Button>
               </Col>
               <Col xs='auto'>
-              <Button style={{marginTop:'24px', marginLeft:'10px'}} variant="danger" onClick={() => {
+              <Button style={{marginTop:'24px', marginLeft:'10px', backgroundColor:'BlanchedAlmond', color:'slateblue', fontWeight:'bold'}} onClick={() => {
                 navigate('/historico')
               }}>
                 Histórico

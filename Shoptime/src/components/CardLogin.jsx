@@ -19,11 +19,6 @@ const CardLogin = () => {
     getUsuarios()
   }, [])
 
-  const handleLimpar = () => {
-    setEmail("");
-    setSenha("")
-  }
-
   const getUsuarios = async () => {
     const response = await api.get('/users')
     setUsuarios(response.data)

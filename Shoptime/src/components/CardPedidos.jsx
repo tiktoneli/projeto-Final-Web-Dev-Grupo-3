@@ -10,7 +10,7 @@ const CardPedidos = ({ pedido }) => {
   const { produtos } = useContext(LojaContext);
 
   useEffect(() => {
-    console.log(pedido);
+
   }, []);
 
   return (
@@ -21,7 +21,7 @@ const CardPedidos = ({ pedido }) => {
         style={{ width: "50%", minWidth: "300px" }}
       >
         <Card.Body>
-          <Card.Title>Data: </Card.Title>
+          <Card.Title>Data do Pedido: {pedido.dataPedido}</Card.Title>
           <Card.Text>Número do Pedido: {pedido.id}</Card.Text>
           <Card.Text>Valor Total: R$ {pedido.valorTotal.toFixed(2)}</Card.Text>
           <Button

@@ -40,13 +40,11 @@ import { LojaContext } from "../../context/LojaContext.jsx";
       setQuantidadeCarrinho(quantidade)
       const produtoExistente = produtosCarrinho.find((prod) => prod.id == id);
       if (produtoExistente) {
-        alert('produto existe')
         const produtosAtualizados = produtosCarrinho.map((prod) =>
           prod.id == id ? { ...prod, quantidadeCarrinho: prod.quantidadeCarrinho + quantidade } : prod
         );
         setProdutosCarrinho(produtosAtualizados);
       } else {
-        alert('produto não existe no carrinho');
         setProdutosCarrinho([...produtosCarrinho, {...produto, quantidadeCarrinho: quantidade}]);
       }
       alert('Produto adicionado ao carrinho!');

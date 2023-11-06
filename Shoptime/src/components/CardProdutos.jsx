@@ -3,21 +3,27 @@ import { api } from "../api/api";
 import { Link } from "react-router-dom";
 import { Button, Card, Col } from "react-bootstrap";
 import { LojaContext } from "../context/LojaContext";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 
 
 const CardProdutos = ({ id, nome, favoritos, imgurl, preco }) => {
-  const {setProdutos, produtosCarrinho, setProdutosCarrinho } = useContext(LojaContext)
+  const {setProdutos, produtosCarrinho, setProdutosCarrinho, produtosExibidos, setProdutosExibidos, produtos } = useContext(LojaContext)
   
   const getProdutos = async () => {
     const response = await api.get(`/produtos`)
     setProdutos(response.data)
-  }
+    setProdutosExibidos((produtos.filter((prod) => prod.quantidade > 0 )))
+    }
 
   const handleLike = async () => {
     await api.patch(`/produtos/${id}`, { favoritos: favoritos + 1 })
     getProdutos()
+
   }
+
+  useEffect(() => {
+    getProdutos()
+  },[])
 
   const handleAdicionarCarrinho = () => {
     
