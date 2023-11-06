@@ -1,7 +1,5 @@
 import { useContext, useEffect, useState } from 'react';
 import { Button, Card, Container, Modal, Table } from 'react-bootstrap';
-import { api } from '../api/api';
-import CardProdutoDoPedido from './CardProdutoDoPedido';
 import { LojaContext } from '../context/LojaContext';
 
 const CardPedidos = ({pedido}, index) => {
@@ -10,15 +8,13 @@ const CardPedidos = ({pedido}, index) => {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
-    const {itens, setItens} = useContext(LojaContext)
+    const {itens, setItens, produtos} = useContext(LojaContext)
 
     useEffect(() => {
-        fetchItens()
+      console.log(pedido)
+
     },[])
-    
-    const fetchItens = () => {
-        setItens(pedido.itens)
-    }
+
     
 
   return(
@@ -55,7 +51,17 @@ const CardPedidos = ({pedido}, index) => {
               </tr>
             </thead>
             <tbody>
-                <CardProdutoDoPedido itens={itens}/>
+            {pedido.itens.map((item) => {
+              produtos.map((produto) => {
+                  if(item.idProduto == produto.id){
+                    console.log(produto),
+                    <tr key={produto.id}>
+                      <td>{produto.nome}</td>
+                      <td>{item.quantidade}</td>
+                      <td>R$ {produto.preco}</td>
+                    </tr>
+                  }
+                })})}
             </tbody>
             <tfoot>
               <tr>

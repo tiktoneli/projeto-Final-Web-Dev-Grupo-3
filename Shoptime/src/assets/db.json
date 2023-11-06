@@ -78,7 +78,7 @@
       "idUser": 1,
       "itens": [
         {
-          "idProduto": 1,
+          "idProduto": 5,
           "quantidade": 10
         },
         {
@@ -93,11 +93,11 @@
       "idUser": 1,
       "itens": [
         {
-          "idProduto": 1,
+          "idProduto": 4,
           "quantidade": 10
         },
         {
-          "idProduto": 2,
+          "idProduto": 3,
           "quantidade": 5
         }
       ]
@@ -112,7 +112,7 @@
           "quantidade": 10
         },
         {
-          "idProduto": 2,
+          "idProduto": 3,
           "quantidade": 5
         }
       ]
@@ -137,11 +137,11 @@
       "idUser": 1,
       "itens": [
         {
-          "idProduto": 1,
+          "idProduto": 2,
           "quantidade": 1
         },
         {
-          "idProduto": 2,
+          "idProduto": 3,
           "quantidade": 17
         }
       ],
@@ -191,16 +191,6 @@
         }
       ],
       "id": 8
-    },
-    {
-      "valorTotal": 39.99,
-      "itens": [
-        {
-          "idProduto": 2,
-          "quantidade": 1
-        }
-      ],
-      "id": 9
     },
     {
       "valorTotal": 39.99,
