@@ -7,7 +7,7 @@ import { LojaContext } from "../../context/LojaContext.jsx";
   const Produto = () => {
     const [produto, setProduto] = useState({})
 
-    const {quantidade, setQuantidade, produtosCarrinho, setProdutosCarrinho} = useContext(LojaContext)
+    const {quantidadeCarrinho, setQuantidadeCarrinho, quantidade, setQuantidade, produtosCarrinho, setProdutosCarrinho} = useContext(LojaContext)
 
     const { id } = useParams()
   
@@ -23,6 +23,7 @@ import { LojaContext } from "../../context/LojaContext.jsx";
   
     useEffect(() => {
         getProduto()
+        setQuantidade(0)
     }, [])
 
     const handleAumentar = () => {
@@ -36,6 +37,7 @@ import { LojaContext } from "../../context/LojaContext.jsx";
     };
 
     const handleAdicionarCarrinho = () => {
+      setQuantidadeCarrinho(quantidade)
       const produtoExistente = produtosCarrinho.find((prod) => prod.id == id);
       console.log([produtosCarrinho])
       console.log({produto})
@@ -46,8 +48,8 @@ import { LojaContext } from "../../context/LojaContext.jsx";
         );
         setProdutosCarrinho(produtosAtualizados);
       } else {
-        alert('produto não existe');
-        setProdutosCarrinho([...produtosCarrinho, produto]);
+        alert('produto não existe no carrinho');
+        setProdutosCarrinho([...produtosCarrinho, {...produto, quantidadeCarrinho}]);
       }
     
       alert('Produto adicionado ao carrinho!');

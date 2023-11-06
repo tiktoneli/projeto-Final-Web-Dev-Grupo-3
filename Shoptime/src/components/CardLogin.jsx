@@ -10,10 +10,8 @@ import { useContext, useEffect } from "react";
 import { LojaContext } from "../context/LojaContext";
 import { useNavigate } from "react-router-dom";
 
-import FundoSem from '../assets/FundoSem.png'
-
 const CardLogin = () => {
-    const {email, senha, setEmail, setSenha, usuarios, setUsuarios, usuarioLogado, setUsuarioLogado} = useContext(LojaContext)
+    const {setPedidos, usuarioLogado, email, senha, setEmail, setSenha, setUsuarios, setUsuarioLogado} = useContext(LojaContext)
 
     const navigate = useNavigate()
 
@@ -37,11 +35,23 @@ const CardLogin = () => {
       params: {email: email, senha: senha}
     })
     setUsuarioLogado(response.data[0])
+
     if(response.data[0]==undefined){
       alert('usuario ou senha invalidos!')
-    }else{navigate('/')}
-    console.log(response.data[0])
-    handleLimpar()
+    }else{ 
+
+      fetchPedidos(response.data[0].id)
+      navigate('/')
+  }
+  }
+
+  const fetchPedidos = async (id) => {
+    if (usuarioLogado){
+      const response = await api.get('/pedidos', {
+        params: {idUser: id}
+      })
+      setPedidos(response.data);
+    }
   }
 
     return(

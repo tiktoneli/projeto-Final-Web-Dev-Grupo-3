@@ -1,11 +1,10 @@
 import CardLogin from "../../components/CardLogin";
-import FundoSem from '../../assets/FundoSem.png'
+import Fundo from '../../assets/Fundo.png'
 
 const Home = () => {
-  //criar estados e variáveis aqui
 
   return (
-    <div style={{ backgroundImage: `url(${FundoSem})`,minHeight:'100vh', display: 'flex',
+    <div style={{ backgroundImage: `url(${Fundo})`,minHeight:'100vh', display: 'flex',
     flexDirection: 'column'}}>
       <CardLogin/>
     </div>

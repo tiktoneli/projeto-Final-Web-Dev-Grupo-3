@@ -21,23 +21,24 @@ const CardProdutos = ({ id, nome, favoritos, imgurl, preco }) => {
   }
 
   const handleAdicionarCarrinho = () => {
+    
     const produtoExistente = produtosCarrinho.find((produto) => produto.id == id);
   
     if (produtoExistente) {
       const produtosAtualizados = produtosCarrinho.map((produto) =>
-        produto.id == id ? { ...produto, quantidade: produto.quantidade + 1 } : produto
+        produto.id == id ? { ...produto, quantidadeCarrinho: produto.quantidadeCarrinho + 1 } : produto
       );
       setProdutosCarrinho(produtosAtualizados);
     } else {
-      const produto = {
+      const produtoAdd = {
         id: id,
         nome: nome,
         favoritos: favoritos,
         imgurl: imgurl,
         preco: preco,
-        quantidade: 1,
+        quantidadeCarrinho: 1,
       };
-      setProdutosCarrinho([...produtosCarrinho, produto]);
+      setProdutosCarrinho([...produtosCarrinho, produtoAdd]);
     }
   
     alert('Produto adicionado ao carrinho!');

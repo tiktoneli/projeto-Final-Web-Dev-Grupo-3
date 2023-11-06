@@ -38,7 +38,7 @@ const Carrinho = () => {
     if(!usuarioLogado.id == 0){
       if(!produtosCarrinho.length == 0){
 
-    const prod = produtosCarrinho.map(({ id, quantidade }) => ({ idProduto: id, quantidade }));
+    const prod = produtosCarrinho.map(({ id, quantidadeCarrinho }) => ({ idProduto: id, quantidadeCarrinho: quantidade }));
     const novoPedido = 
     {
       valorTotal:total,
@@ -63,7 +63,7 @@ const Carrinho = () => {
     produtos.map(async (produto) => {
       produtosCarrinho.map((prodCarrinho) => {
         if (prodCarrinho.id == produto.id){
-          api.patch(`/produtos/${produto.id}`, {quantidade: produto.quantidade - prodCarrinho.quantidade})
+          api.patch(`/produtos/${produto.id}`, {quantidade: produto.quantidade - prodCarrinho.quantidadeCarrinho})
         }
       })  
     });

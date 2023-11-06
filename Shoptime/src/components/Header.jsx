@@ -13,11 +13,10 @@ const Header = () => {
   const [filtroNome, setFiltroNome] = useState("");
   const [textoPesquisa, setTextoPesquisa] = useState("")
 
-  const { produtos, setProdutos } = useContext(LojaContext);
+  const { produtos, setProdutos, pedidos } = useContext(LojaContext);
   const navigate = useNavigate()
 
-  const getProdutos = async (e) => {
-    e.preventDefault()
+  const getProdutos = async (e) => {  
     const response = await api.get("/produtos");
     setProdutos(response.data);
     setTextoPesquisa('')
@@ -52,6 +51,14 @@ const Header = () => {
     setProdutos(produtosFiltrados.data);
   };
 
+  const handleLimparPesquisa = async (e) => {
+    e.preventDefault()
+    setFiltroNome('');
+    setTextoPesquisa('');
+    await getProdutos();
+  }
+
+
   return (
     <>
       <Navbar style={{backgroundColor: 'SlateBlue', maxHeight:'80px'}} variant="dark" className="justify-content-between">
@@ -71,11 +78,13 @@ const Header = () => {
               </Link>
             </Col>
             <Col xs="auto">
-              <Form.Control style={{marginTop:'24px'}}
+              <Form.Control  style={{marginTop:'24px'}}
                 type="text"
                 placeholder="Search"
                 className=" mr-sm-2"
+                value={filtroNome}
                 onChange={handleChangeFiltro}
+                
               />
             </Col>
             <Col xs="auto">
@@ -84,8 +93,14 @@ const Header = () => {
               </Button>
             </Col>
             <Col xs="auto">
-              <Button style={{marginTop:'24px'}} type="submit" variant="danger" onClick={getProdutos}>
+              <Button style={{marginTop:'24px'}} type="submit" variant="danger" onClick={handleLimparPesquisa}>
                 Limpar Pesquisa
+              </Button>
+              <Button style={{marginTop:'24px', marginLeft:'10px'}} variant="danger" onClick={() => {
+                navigate('/historico')
+                console.log(pedidos)
+              }}>
+                Histórico
               </Button>
             </Col>
             <Col style={{marginTop:'14px'}} xs="auto">

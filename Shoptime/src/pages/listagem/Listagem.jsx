@@ -3,6 +3,7 @@ import { api } from "../../api/api";
 import CardProdutos from "../../components/CardProdutos";
 import { Container, Row } from "react-bootstrap";
 import { LojaContext } from "../../context/LojaContext";
+import FundoSem from '../../assets/FundoSem.png'
 
 const Listagem = () => {
 
@@ -15,7 +16,7 @@ const Listagem = () => {
 
   return (
 
-      <div style={{minHeight:'100vh', display: 'flex',
+      <div style={{backgroundImage: `url(${FundoSem})`, minHeight:'100vh', display: 'flex',
         flexDirection: 'column'}}>
         <Container className="d-flex justify-content-between flex-wrap" >
           {produtos.map(
