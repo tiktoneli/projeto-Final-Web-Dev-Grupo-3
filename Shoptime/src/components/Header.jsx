@@ -72,15 +72,12 @@ const Header = () => {
         
         <Form inline>
           <Row>
-            <Col xs='1'>
-              <p></p>
-            </Col>
-            <Col xs='1'>
+            <Col xs='auto'>
               <Link to={"/home"}>
                 <Navbar.Brand href="#home"><IoPersonCircleOutline style={{marginTop:'20px'}} size={43}/></Navbar.Brand>
               </Link>
             </Col>
-            <Col xs="2">
+            <Col xs="auto">
               <Form.Control  style={{marginTop:'24px'}}
                 type="text"
                 placeholder="Search"
@@ -89,28 +86,27 @@ const Header = () => {
                 onChange={handleChangeFiltro}
               />
             </Col>
-            <Col xs="2">
+            <Col xs="auto">
               <Button style={{marginTop:'29px', backgroundColor:'darkorange', opacity:'0.8'}} type="submit" onClick={handleNavigateFiltro}>
                 <FaMagnifyingGlass/>
               </Button>
             </Col>
-            <Col xs="2">
+            <Col xs="auto">
               <Button style={{marginTop:'24px'}} type="submit" variant="danger" onClick={handleLimparPesquisa}>
                 Limpar Pesquisa
               </Button>
               </Col>
-              <Col xs='1'>
+              <Col xs='auto'>
               <Button style={{marginTop:'24px', marginLeft:'10px'}} variant="danger" onClick={() => {
                 navigate('/historico')
               }}>
                 Histórico
               </Button>
               </Col>
-            <Col style={{marginTop:'14px'}} xs="1">
+              <Col xs='auto' style={{marginTop:'15px'}}>
               <Link to={'/carrinho'}><img style={{maxHeight:'50px'}} src={Cart} /></Link>
-            </Col>
+              </Col>
           </Row>
-           
         </Form>
       </Navbar>
       <p style={{fontSize:'1.3rem' ,textAlign:'center', marginTop:'0', marginBottom:'0px', fontWeight:''}}><em>{textoPesquisa}</em></p>
