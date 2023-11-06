@@ -13,6 +13,12 @@
       "email": "admin2@admin",
       "senha": "admin",
       "pedidos": []
+    },
+    {
+      "nome": "Raynan Titoneli",
+      "email": "raynanatc@hotmail.com",
+      "senha": "admin",
+      "id": 3
     }
   ],
   "produtos": [
@@ -29,7 +35,7 @@
       "id": 2,
       "nome": "Bola de Futevôlei",
       "preco": 39.99,
-      "quantidade": 14,
+      "quantidade": 0,
       "descricao": "Bola redonda e que rola feita para ser chutada.",
       "imgurl": "https://i.zst.com.br/thumbs/12/6/16/1949710756.jpg",
       "favoritos": 57
@@ -47,7 +53,7 @@
       "id": 4,
       "nome": "Skate RGB",
       "preco": 169.99,
-      "quantidade": 59,
+      "quantidade": 1,
       "descricao": "Skate gamer que brilha enquanto você manda aquele kickflip maneiro.",
       "imgurl": "https://ae01.alicdn.com/kf/H995d06a0f7d748f09f362da7182af8cfz/Skate-esportivo-3d-led-usb-l-mpada-tridimensional-inovativa-desktops-downlights-controlador-rgb-toque-remoto-decora.jpg",
       "favoritos": 15

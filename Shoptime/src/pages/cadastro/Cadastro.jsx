@@ -50,21 +50,19 @@ const Cadastro = () => {
           <Card.Body>
             <Form style={{alignItems: "center"}} >
             <Form.Group className="mb-3" controlId="formBasicNome">
-                <Form.Label onChange={handleChangeNome}>Nome</Form.Label>
-                <Form.Control type="Nome" placeholder="Nome Completo" />
+                <Form.Label >Nome</Form.Label>
+                <Form.Control onChange={handleChangeNome} type="Nome" placeholder="Nome Completo" />
               </Form.Group>
 
               <Form.Group className="mb-3" controlId="formBasicEmail">
-                <Form.Label onChange={handleChangeEmail}>Email</Form.Label>
-                <Form.Control type="email" placeholder="Email" />
+                <Form.Label >Email</Form.Label>
+                <Form.Control onChange={handleChangeEmail} type="email" placeholder="Email" />
               </Form.Group>
 
               <Form.Group className="mb-3" controlId="formBasicPassword">
-                <Form.Label onChange={handleChangeSenha}>Senha</Form.Label>
-                <Form.Control type="password" placeholder="Senha" />
+                <Form.Label >Senha</Form.Label>
+                <Form.Control onChange={handleChangeSenha} type="password" placeholder="Senha" />
               </Form.Group>
-
-              
             </Form>
           </Card.Body>
           <Button variant="info" onClick={handleCasdastrarNovoUsuario}>

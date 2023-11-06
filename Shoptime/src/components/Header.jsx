@@ -13,12 +13,13 @@ const Header = () => {
   const [filtroNome, setFiltroNome] = useState("");
   const [textoPesquisa, setTextoPesquisa] = useState("")
 
-  const { usuarioLogado, setProdutos } = useContext(LojaContext);
+  const { setProdutos, setProdutosExibidos, produtos } = useContext(LojaContext);
   const navigate = useNavigate()
 
-  const getProdutos = async (e) => {  
+  const getProdutos = async () => {  
     const response = await api.get("/produtos");
     setProdutos(response.data);
+    setProdutosExibidos((produtos.filter((prod) => prod.quantidade > 0 )))
     setTextoPesquisa('')
   };
 
@@ -38,7 +39,7 @@ const Header = () => {
   //tentativa de pesquisa a partir de qualquer rota
   const handleNavigateFiltro = async (e) => {
     e.preventDefault()
-    navigate('/')
+    navigate('/home')
     await handleFiltrar(e)
   }
 
@@ -48,7 +49,7 @@ const Header = () => {
       params: {nome_like: filtroNome}
     })
     handleChangeTexto()
-    setProdutos(produtosFiltrados.data);
+    setProdutosExibidos(produtosFiltrados.data);
   };
 
   const handleLimparPesquisa = async (e) => {
@@ -64,7 +65,7 @@ const Header = () => {
       <Navbar style={{backgroundColor: 'SlateBlue', maxHeight:'80px'}} variant="dark" className="justify-content-between">
         <Form inline>
           <div style={{display:'flex'}}>
-          <Link style={{ marginRight: "20px" }} to={"/"}>
+          <Link style={{ marginRight: "20px" }} to={"/home"}>
             <img style={{maxHeight:'50px'}} src={Logo} />
           </Link>
           </div>
@@ -73,7 +74,7 @@ const Header = () => {
         <Form inline>
           <Row>
             <Col xs='auto'>
-              <Link to={"/home"}>
+              <Link to={"/"}>
                 <Navbar.Brand href="#home"><IoPersonCircleOutline style={{marginTop:'20px'}} size={43}/></Navbar.Brand>
               </Link>
             </Col>

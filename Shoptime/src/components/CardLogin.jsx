@@ -79,12 +79,14 @@ const CardLogin = () => {
               setSenha(e.target.value)
             }} />
           </Form.Group>
+          <div style={{display:'flex',justifyContent:'space-around'}}>
           <Button variant="info" type="submit">
-            Submit
+            Login
           </Button>
-          <Button variant="sucess" onClick={handleNavigateCadastro}>
+          <Button variant="success" onClick={handleNavigateCadastro}>
             Cadastre-se
           </Button>
+          </div>
         </Form>
       </Card.Body>
     </Card>

@@ -7,7 +7,7 @@ import { useContext } from "react";
 
 
 const CardProdutos = ({ id, nome, favoritos, imgurl, preco }) => {
-  const {setProdutos, produtosCarrinho, setProdutosCarrinho, setQuantidadeCarrinho, quantidadeCarrinho} = useContext(LojaContext)
+  const {setProdutos, produtosCarrinho, setProdutosCarrinho } = useContext(LojaContext)
   
   const getProdutos = async () => {
     const response = await api.get(`/produtos`)
