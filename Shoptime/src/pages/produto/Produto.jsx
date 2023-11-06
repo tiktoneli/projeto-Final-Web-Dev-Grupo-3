@@ -39,8 +39,6 @@ import { LojaContext } from "../../context/LojaContext.jsx";
     const handleAdicionarCarrinho = () => {
       setQuantidadeCarrinho(quantidade)
       const produtoExistente = produtosCarrinho.find((prod) => prod.id == id);
-      console.log([produtosCarrinho])
-      console.log({produto})
       if (produtoExistente) {
         alert('produto existe')
         const produtosAtualizados = produtosCarrinho.map((prod) =>

@@ -13,7 +13,7 @@ const Header = () => {
   const [filtroNome, setFiltroNome] = useState("");
   const [textoPesquisa, setTextoPesquisa] = useState("")
 
-  const { produtos, setProdutos, pedidos } = useContext(LojaContext);
+  const { usuarioLogado, setProdutos } = useContext(LojaContext);
   const navigate = useNavigate()
 
   const getProdutos = async (e) => {  
@@ -72,38 +72,41 @@ const Header = () => {
         
         <Form inline>
           <Row>
-            <Col xs='auto'>
+            <Col xs='1'>
+              <p></p>
+            </Col>
+            <Col xs='1'>
               <Link to={"/home"}>
                 <Navbar.Brand href="#home"><IoPersonCircleOutline style={{marginTop:'20px'}} size={43}/></Navbar.Brand>
               </Link>
             </Col>
-            <Col xs="auto">
+            <Col xs="2">
               <Form.Control  style={{marginTop:'24px'}}
                 type="text"
                 placeholder="Search"
                 className=" mr-sm-2"
                 value={filtroNome}
                 onChange={handleChangeFiltro}
-                
               />
             </Col>
-            <Col xs="auto">
+            <Col xs="2">
               <Button style={{marginTop:'29px', backgroundColor:'darkorange', opacity:'0.8'}} type="submit" onClick={handleNavigateFiltro}>
                 <FaMagnifyingGlass/>
               </Button>
             </Col>
-            <Col xs="auto">
+            <Col xs="2">
               <Button style={{marginTop:'24px'}} type="submit" variant="danger" onClick={handleLimparPesquisa}>
                 Limpar Pesquisa
               </Button>
+              </Col>
+              <Col xs='1'>
               <Button style={{marginTop:'24px', marginLeft:'10px'}} variant="danger" onClick={() => {
                 navigate('/historico')
-                console.log(pedidos)
               }}>
                 Histórico
               </Button>
-            </Col>
-            <Col style={{marginTop:'14px'}} xs="auto">
+              </Col>
+            <Col style={{marginTop:'14px'}} xs="1">
               <Link to={'/carrinho'}><img style={{maxHeight:'50px'}} src={Cart} /></Link>
             </Col>
           </Row>

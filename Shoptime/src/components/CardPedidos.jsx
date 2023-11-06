@@ -2,13 +2,13 @@ import { useContext, useEffect, useState } from 'react';
 import { Button, Card, Container, Modal, Table } from 'react-bootstrap';
 import { LojaContext } from '../context/LojaContext';
 
-const CardPedidos = ({pedido}, index) => {
+const CardPedidos = ({pedido}) => {
 
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
-    const {itens, setItens, produtos} = useContext(LojaContext)
+    const {produtos} = useContext(LojaContext)
 
     useEffect(() => {
       console.log(pedido)
@@ -19,10 +19,10 @@ const CardPedidos = ({pedido}, index) => {
 
   return(
     <div>
-    <Card key={index} className="mb-3" style={{ width: '50%', minWidth: '300px' }}>
+    <Card key={pedido.id} className="mb-3" style={{ width: '50%', minWidth: '300px' }}>
         <Card.Body>
         <Card.Title>Data: </Card.Title>
-        <Card.Text>Número do Pedido: {pedido.numeroPedido}</Card.Text>
+        <Card.Text>Número do Pedido: {pedido.id}</Card.Text>
         <Card.Text>Valor Total: R$ {pedido.valorTotal.toFixed(2)}</Card.Text>
         <Button variant="primary" style={{backgroundColor: 'purple'}} onClick={handleShow}>Ver mais</Button>
     </Card.Body>
@@ -51,17 +51,16 @@ const CardPedidos = ({pedido}, index) => {
               </tr>
             </thead>
             <tbody>
-            {pedido.itens.map((item) => {
-              produtos.map((produto) => {
-                  if(item.idProduto == produto.id){
-                    console.log(produto),
-                    <tr key={produto.id}>
-                      <td>{produto.nome}</td>
-                      <td>{item.quantidade}</td>
-                      <td>R$ {produto.preco}</td>
-                    </tr>
-                  }
-                })})}
+            {pedido.itens.map((item, index) => {
+              const produto = produtos.find((prod) => prod.id == item.idProduto)
+              return(
+              <tr key={index + 1}>
+                <td>{produto.nome}</td>
+                <td>{item.quantidade}</td>
+                <td>R$ {produto.preco}</td>
+              </tr> 
+              )})}
+
             </tbody>
             <tfoot>
               <tr>

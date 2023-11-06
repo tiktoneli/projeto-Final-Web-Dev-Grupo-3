@@ -107,7 +107,6 @@ const Carrinho = () => {
                   <td>{produto.quantidadeCarrinho}</td>
                   <td>R$ {produto.preco}</td>
                   <td>R$ {(produto.preco * produto.quantidadeCarrinho).toFixed(2)}</td>
-                  {console.log(produto)}
                   <td>
                     <Button
                       onClick={() =>

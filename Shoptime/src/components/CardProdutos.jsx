@@ -15,7 +15,6 @@ const CardProdutos = ({ id, nome, favoritos, imgurl, preco }) => {
   }
 
   const handleLike = async () => {
-    console.log(id)
     await api.patch(`/produtos/${id}`, { favoritos: favoritos + 1 })
     getProdutos()
   }
