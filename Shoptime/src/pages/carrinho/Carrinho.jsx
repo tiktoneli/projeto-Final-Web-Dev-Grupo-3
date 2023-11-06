@@ -17,20 +17,20 @@ const Carrinho = () => {
   useEffect(() => {
     setTotal(
       produtosCarrinho.reduce((total, prod) => {
-        return total + prod.preco * prod.quantidade;
+        return total + prod.preco * prod.quantidadeCarrinho;
       }, 0)
     );
     setNomeUsuario(usuarioLogado.nome);
   }, [produtosCarrinho, usuarioLogado]);
 
-  const handleRemoverCarrinho = (nome, preco, quantidade) => {
+  const handleRemoverCarrinho = (nome, preco, quantidadeCarrinho) => {
     const prodCarrinhoFiltrado = produtosCarrinho.filter(
       (prod) => prod.nome !== nome
     );
     setProdutosCarrinho(prodCarrinhoFiltrado);
     alert("Produto removido do carrinho!");
 
-    const valorRemovido = preco * quantidade;
+    const valorRemovido = preco * quantidadeCarrinho;
     setTotal(total - valorRemovido);
   };
 
@@ -102,9 +102,10 @@ const Carrinho = () => {
               {produtosCarrinho.map((produto) => (
                 <tr>
                   <td>{produto.nome}</td>
-                  <td>{produto.quantidade}</td>
+                  <td>{produto.quantidadeCarrinho}</td>
                   <td>R$ {produto.preco}</td>
-                  <td>R$ {(produto.preco * produto.quantidade).toFixed(2)}</td>
+                  <td>R$ {(produto.preco * produto.quantidadeCarrinho).toFixed(2)}</td>
+                  {console.log(produto)}
                   <td>
                     <Button
                       onClick={() =>
