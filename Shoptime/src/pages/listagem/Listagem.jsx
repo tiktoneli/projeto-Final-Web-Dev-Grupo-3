@@ -7,7 +7,7 @@ import FundoSem from '../../assets/FundoSem.png'
 
 const Listagem = () => {
 
-  const {produtos, setProdutos, produtosExibidos, setProdutosExibidos} = useContext(LojaContext)
+  const {setProdutos, produtosExibidos, setProdutosExibidos, textoPesquisa} = useContext(LojaContext)
 
   const getProdutos = async () => {
       const response = await api.get('/produtos')
@@ -23,8 +23,8 @@ const Listagem = () => {
       <div style={{backgroundImage: `url(${FundoSem})`, minHeight:'100vh', display: 'flex',
         flexDirection: 'column'}}>
           
+        <p style={{fontSize:'1.3rem' ,textAlign:'center', marginTop:'0', marginBottom:'0px', alignItems:'center'}}><em>{textoPesquisa}</em></p>
         <Container className="d-flex justify-flex-start flex-wrap" >
-          
           {produtosExibidos.map(
               ({  id, nome, preco, quantidade, descricao, favoritos, imgurl}) => (
                 <Row key={id} xs={id} md={3} className="g-4">

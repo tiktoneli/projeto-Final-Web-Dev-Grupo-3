@@ -76,14 +76,14 @@
       "quantidade": 17,
       "descricao": "Um versátil, prático e contente recipiente que pode guardar até 300 lenços de papel.",
       "imgurl": "https://m.media-amazon.com/images/I/41imwlUhEzL._AC_UF1000,1000_QL80_.jpg",
-      "favoritos": 28019
+      "favoritos": 28020
     },
     {
       "id": 6,
       "categoria": "Informática",
       "nome": "MOUSE MARS UKV-01 COORDINATE INPUT DEVICE",
       "preco": 1200.99,
-      "quantidade": 137,
+      "quantidade": 136,
       "descricao": "Mouse com fio soviético nada prático e/ou funcional.",
       "imgurl": "https://i.imgur.com/l1muUsq.png",
       "favoritos": 6
@@ -305,6 +305,30 @@
         }
       ],
       "id": 16
+    },
+    {
+      "dataPedido": "07/11/2023",
+      "valorTotal": 1200.99,
+      "idUser": 1,
+      "itens": [
+        {
+          "idProduto": 6,
+          "quantidade": 1
+        }
+      ],
+      "id": 17
+    },
+    {
+      "dataPedido": "07/11/2023",
+      "valorTotal": 39.99,
+      "idUser": 1,
+      "itens": [
+        {
+          "idProduto": 2,
+          "quantidade": 1
+        }
+      ],
+      "id": 18
     }
   ]
 }

@@ -18,7 +18,10 @@ export const LojaProvider = ({children}) => {
   const [produtosCarrinho, setProdutosCarrinho] = useState([])
   const [usuarioLogado, setUsuarioLogado] = useState({})
 
+  const [filtroNome, setFiltroNome] = useState("");
+  const [textoPesquisa, setTextoPesquisa] = useState("")
+
   return(
-    <LojaContext.Provider value={{email, setEmail, senha, setSenha, usuarios, setUsuarios, pedidos, setPedidos, produtos, setProdutos, quantidade, setQuantidade, produtosCarrinho, setProdutosCarrinho, usuarioLogado, setUsuarioLogado, quantidadeCarrinho, setQuantidadeCarrinho, total, setTotal, quantidadeEstoque, setQuantidadeEstoque, produtosExibidos, setProdutosExibidos}}>{children}</LojaContext.Provider>
+    <LojaContext.Provider value={{email, setEmail, senha, setSenha, usuarios, setUsuarios, pedidos, setPedidos, produtos, setProdutos, quantidade, setQuantidade, produtosCarrinho, setProdutosCarrinho, usuarioLogado, setUsuarioLogado, quantidadeCarrinho, setQuantidadeCarrinho, total, setTotal, quantidadeEstoque, setQuantidadeEstoque, produtosExibidos, setProdutosExibidos, filtroNome,setFiltroNome, textoPesquisa, setTextoPesquisa}}>{children}</LojaContext.Provider>
   )
 }

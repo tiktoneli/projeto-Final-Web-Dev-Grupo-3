@@ -10,10 +10,8 @@ import {IoPersonCircleOutline} from 'react-icons/io5'
 import Cart from '../assets/Cart.png'
 
 const Header = () => {
-  const [filtroNome, setFiltroNome] = useState("");
-  const [textoPesquisa, setTextoPesquisa] = useState("")
-
-  const { setProdutos, setProdutosExibidos, produtos } = useContext(LojaContext);
+  
+  const { textoPesquisa, setTextoPesquisa, filtroNome, setFiltroNome, setProdutos, setProdutosExibidos, produtos } = useContext(LojaContext);
   const navigate = useNavigate()
 
   const getProdutos = async () => {  
@@ -36,7 +34,7 @@ const Header = () => {
   const handleChangeTexto = () => {
     if(!filtroNome == ""){
     setTextoPesquisa(`mostrando resultados para: ${filtroNome}`);
-    }else{setTextoPesquisa('')}
+    }else{handleLimparPesquisa()}
   };
 
   //tentativa de pesquisa a partir de qualquer rota
@@ -51,7 +49,7 @@ const Header = () => {
     const produtosFiltrados = await api.get('/produtos', {
       params: {nome_like: filtroNome}
     })
-    setProdutosExibidos(produtosFiltrados.data);
+    setProdutosExibidos((produtosFiltrados.data.filter((prod) => prod.quantidade > 0 )))
    
     handleChangeTexto()
   };
@@ -114,7 +112,6 @@ const Header = () => {
           </Row>
         </Form>
       </Navbar>
-      <p style={{fontSize:'1.3rem' ,textAlign:'center', marginTop:'0', marginBottom:'0px', fontWeight:''}}><em>{textoPesquisa}</em></p>
     </>
   );
 };
