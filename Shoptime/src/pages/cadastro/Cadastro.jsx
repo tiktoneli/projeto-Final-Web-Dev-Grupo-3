@@ -12,6 +12,8 @@ const Cadastro = () => {
   const {email, setEmail, senha, setSenha} = useContext(LojaContext);
   const [nome, setNome] = useState('')
 
+  const {setUsuarios} = useContext(LojaContext)
+
   const navigate = useNavigate()
 
   const handleCasdastrarNovoUsuario = async (e) => {
@@ -27,6 +29,12 @@ const Cadastro = () => {
     setEmail('')
     setSenha('')
     setNome('')
+    getUsuarios()
+  }
+
+  const getUsuarios = async () => {
+    const response = await api.get('/users')
+    setUsuarios(response.data)
   }
 
   const handleChangeNome = (e) => {

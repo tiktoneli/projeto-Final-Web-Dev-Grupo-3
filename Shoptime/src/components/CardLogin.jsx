@@ -26,6 +26,7 @@ const CardLogin = () => {
 
   const handleLogarReq = async (e) => {
     e.preventDefault()
+    getUsuarios()
     const response = await api.get('/users', {
       params: {email: email, senha: senha}
       
@@ -35,8 +36,8 @@ const CardLogin = () => {
     if(response.data[0]==undefined){
       alert('usuario ou senha invalidos!')
     }else{ 
-
-      fetchPedidos(response.data[0].id)
+      const id = response.data[0].id
+      fetchPedidos(id)
       alert('Usuário logado com sucesso!')
       navigate('/home')
   }

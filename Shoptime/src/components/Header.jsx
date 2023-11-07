@@ -49,20 +49,9 @@ const Header = () => {
     const produtosFiltrados = await api.get('/produtos', {
       params: {nome_like: filtroNome}
     })
-    alert('setando filtro')
     setProdutosExibidos(produtosFiltrados.data);
     console.log(produtosExibidos)
-    if(produtosFiltrados.data.length == 0){
-      alert('pesquisando categoria')
-      const produtosFiltradosCat = await api.get('/produtos', {
-        params: {categoria_like: filtroNome}
-      })
-      alert('setando prodcat')
-      setProdutosExibidos(produtosFiltradosCat.data)
-      if(produtosFiltrados.data.length == 0 && produtosFiltradosCat.data.length == 0){
-        
-      }
-    }
+
     handleChangeTexto()
   };
 
