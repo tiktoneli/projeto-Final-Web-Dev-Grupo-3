@@ -51,44 +51,69 @@ import { LojaContext } from "../../context/LojaContext.jsx";
     };
   
     return (
-      <div style={{minHeight:'100vh', display: 'flex',
-      flexDirection: 'column'}}>  
-        <Container style={{ paddingTop:"1.5rem"}}>
-          <CardGroup style={{ minHeight:"35rem"}}>
-            <Card>
-            <Card.Img style={{height:'40vh',  objectFit:'contain'}} variant="top" src={produto.imgurl} />
-            </Card>
-            <Card>
-              <Card.Body>
-                <Card.Title className="d-flex justify-content-between">
-                  {produto.nome}
-                  <Button onClick={() => {
-                    handleLike(produto.id, produto.favoritos)
-                  }} variant="danger">❤️{produto.favoritos}</Button>
-                </Card.Title>
-                <Card.Text>
-                  R$ {produto.preco}
-                  <br />
-                  {produto.descricao}
-                </Card.Text>
-              </Card.Body>
-              <Card.Footer className="d-flex justify-content-between">
-                <InputGroup className="mb-1">
-                  <Button variant="secondary" onClick={handleDiminuir}>
-                    -
-                  </Button>
-                  <span className="p-2" style={{backgroundColor:"#6c757d", color:"#FFFFFF" }} >{quantidade}</span>
-                  <Button variant="secondary" onClick={handleAumentar}>
-                    +
-                  </Button>
-                </InputGroup>
-                <div className="d-flex">
-                  <button onClick={handleAdicionarCarrinho} type="submit" className="btn btn-primary mx-1">
-                    Add ao Carrinho
-                  </button>
-                </div>
-              </Card.Footer>
-            </Card>
+      <div style={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}>
+    <Container style={{ paddingTop: "1.5rem" }}>
+      <CardGroup style={{ minHeight: "35rem" }} className="d-flex">
+        <Card style={{ width: "70%" }}>
+          <Card.Img
+            style={{ height: "100%", objectFit: "cover" }}
+            variant="top"
+            src={produto.imgurl}
+          />
+        </Card>
+        <Card style={{ width: "30%", margin: "0 auto" }}>
+    <Card.Title className="d-flex justify-content-between mb-3" style={{ padding:"20px", marginBottom: "10px", borderBottom: "1px solid #ccc" }}>
+      {produto.nome}
+      <Button
+        onClick={() => {
+          handleLike(produto.id, produto.favoritos);
+        }}
+        variant="danger"
+      >
+        ❤️{produto.favoritos}
+      </Button>
+    </Card.Title>
+    <Card.Body className="d-flex flex-column flex-grow-1">
+    <div style={{ marginBottom: 'auto' }}>
+      <Card.Text>
+        Descrição:
+        <br />
+        {produto.descricao}
+      </Card.Text>
+    </div>
+    <div style={{ marginTop: 'auto' }}>
+      <Card.Text>
+        R$ {produto.preco}
+      </Card.Text>
+    </div>
+  </Card.Body>
+    <Card.Footer className="d-flex justify-content-between mt-auto" style={{ borderTop: "1px solid #ccc" }}>
+      <InputGroup className="mb-1">
+        <Button variant="secondary" onClick={handleDiminuir}>
+          -
+        </Button>
+        <span
+          className="p-2"
+          style={{ backgroundColor: "#6c757d", color: "#FFFFFF" }}
+        >
+          {quantidade}
+        </span>
+        <Button variant="secondary" onClick={handleAumentar}>
+          +
+        </Button>
+      </InputGroup>
+      <div className="d-flex">
+        <button
+          onClick={handleAdicionarCarrinho}
+          type="submit"
+          className="btn btn-primary mx-1"
+        >
+          Add ao Carrinho
+        </button>
+      </div>
+    </Card.Footer>
+  </Card>
+  
           </CardGroup>
         </Container>
       </div>

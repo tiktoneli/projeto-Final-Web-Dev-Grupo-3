@@ -22,7 +22,8 @@ const Listagem = () => {
   return (
       <div style={{backgroundImage: `url(${FundoSem})`, minHeight:'100vh', display: 'flex',
         flexDirection: 'column'}}>
-        <Container className="d-flex justify-content-between flex-wrap" >
+          
+        <Container className="d-flex justify-flex-start flex-wrap" >
           
           {produtosExibidos.map(
               ({  id, nome, preco, quantidade, descricao, favoritos, imgurl}) => (

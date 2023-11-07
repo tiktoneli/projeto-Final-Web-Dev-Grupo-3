@@ -13,13 +13,14 @@ const Header = () => {
   const [filtroNome, setFiltroNome] = useState("");
   const [textoPesquisa, setTextoPesquisa] = useState("")
 
-  const { setProdutos, setProdutosExibidos, produtos } = useContext(LojaContext);
+  const { setProdutos, setProdutosExibidos, produtos, produtosExibidos } = useContext(LojaContext);
   const navigate = useNavigate()
 
   const getProdutos = async () => {  
     const response = await api.get("/produtos");
     setProdutos(response.data);
     setProdutosExibidos((produtos.filter((prod) => prod.quantidade > 0 )))
+
     setTextoPesquisa('')
   };
 
@@ -48,8 +49,21 @@ const Header = () => {
     const produtosFiltrados = await api.get('/produtos', {
       params: {nome_like: filtroNome}
     })
-    handleChangeTexto()
+    alert('setando filtro')
     setProdutosExibidos(produtosFiltrados.data);
+    console.log(produtosExibidos)
+    if(produtosFiltrados.data.length == 0){
+      alert('pesquisando categoria')
+      const produtosFiltradosCat = await api.get('/produtos', {
+        params: {categoria_like: filtroNome}
+      })
+      alert('setando prodcat')
+      setProdutosExibidos(produtosFiltradosCat.data)
+      if(produtosFiltrados.data.length == 0 && produtosFiltradosCat.data.length == 0){
+        
+      }
+    }
+    handleChangeTexto()
   };
 
   const handleLimparPesquisa = async (e) => {
@@ -71,7 +85,7 @@ const Header = () => {
           </div>
         </Form>
         
-        <Form inline>
+        <Form onSubmit={handleNavigateFiltro} inline>
           <Row>
             <Col xs='auto'>
               <Link to={"/"}>
@@ -88,12 +102,12 @@ const Header = () => {
               />
             </Col>
             <Col xs="auto">
-              <Button style={{marginTop:'29px', backgroundColor:'chocolate'}} type="submit" onClick={handleNavigateFiltro}>
+              <Button style={{marginTop:'29px', backgroundColor:'chocolate'}} type="submit">
                 <FaMagnifyingGlass/>
               </Button>
             </Col>
             <Col xs="auto">
-              <Button style={{marginTop:'24px', backgroundColor:'orangered', opacity:'0.9'}} type="submit" onClick={handleLimparPesquisa}>
+              <Button style={{marginTop:'24px', backgroundColor:'orangered', opacity:'0.9'}} onClick={handleLimparPesquisa}>
                 Limpar Pesquisa
               </Button>
               </Col>

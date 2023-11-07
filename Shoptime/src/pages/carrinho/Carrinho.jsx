@@ -3,8 +3,12 @@ import { LojaContext } from "../../context/LojaContext";
 import { Button, Card, Container, Table } from "react-bootstrap";
 import { api } from "../../api/api";
 import {GoTrash} from 'react-icons/go'
+import { useNavigate } from "react-router-dom";
 
 const Carrinho = () => {
+
+  const navigate = useNavigate()
+
   const {
     setProdutosCarrinho,
     total,
@@ -64,6 +68,7 @@ const Carrinho = () => {
     }else{alert('Adicione um produto ao carrinho antes de finalizar o pedido!')}
   }else{alert('Por favor, realize o login para finalizar o pedido')}
     fetchPedidos()
+    navigate('/historico')
   }
 
   const handleEsvaziarCarrinho = () => {
