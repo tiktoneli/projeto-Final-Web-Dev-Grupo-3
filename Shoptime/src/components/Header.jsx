@@ -50,7 +50,7 @@ const Header = () => {
       params: {nome_like: filtroNome}
     })
     setProdutosExibidos((produtosFiltrados.data.filter((prod) => prod.quantidade > 0 )))
-   
+    handleLimparPesquisa()
     handleChangeTexto()
   };
 
