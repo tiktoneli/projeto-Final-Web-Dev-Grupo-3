@@ -1,10 +1,11 @@
-import React, { useEffect, useContext } from "react";
+import React, { useEffect, useContext, useState } from "react";
 import { Container } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import CardPedidos from "../../components/CardPedidos";
 import { LojaContext } from "../../context/LojaContext";
 import { useNavigate } from "react-router-dom";
 import Fundo from '../../assets/Fundo.png'
+import CustomAlertError from '../../components/CustomAlertError'
 
 const HistoricoPedidos = () => {
   const { pedidos, usuarioLogado, setPedidos } = useContext(LojaContext);
@@ -12,7 +13,8 @@ const HistoricoPedidos = () => {
 
   useEffect(() => {
     if (!usuarioLogado.nome){
-      alert('Faça o login para ver seus pedidos feitos!')
+    //  alert('Faça o login para ver seus pedidos feitos!')
+    CustomAlertError('Faça o login', 'para ver seus pedidos!')
       navigate('/')
     }
   }, []);

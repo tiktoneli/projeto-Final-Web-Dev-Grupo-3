@@ -8,6 +8,7 @@ import { FaMagnifyingGlass } from 'react-icons/fa6'
 import Logo from '../assets/Logo.png'
 import {IoPersonCircleOutline} from 'react-icons/io5'
 import Cart from '../assets/Cart.png'
+import CustomAlertInfo from "./CustomAlertInfo";
 
 const Header = () => {
   const [filtroNome, setFiltroNome] = useState("");
@@ -49,15 +50,18 @@ const Header = () => {
     const produtosFiltrados = await api.get('/produtos', {
       params: {nome_like: filtroNome}
     })
-    alert('setando filtro')
+  //  alert('setando filtro')
+    CustomAlertInfo('setando filtro')
     setProdutosExibidos(produtosFiltrados.data);
     console.log(produtosExibidos)
     if(produtosFiltrados.data.length == 0){
-      alert('pesquisando categoria')
+    //  alert('pesquisando categoria')
+      CustomAlertInfo('pesquisando categoria')
       const produtosFiltradosCat = await api.get('/produtos', {
         params: {categoria_like: filtroNome}
       })
-      alert('setando prodcat')
+    //  alert('setando prodcat')
+      CustomAlertInfo('setando prodcat')
       setProdutosExibidos(produtosFiltradosCat.data)
       if(produtosFiltrados.data.length == 0 && produtosFiltradosCat.data.length == 0){
         

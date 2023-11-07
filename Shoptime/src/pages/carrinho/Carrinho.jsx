@@ -4,6 +4,8 @@ import { Button, Card, Container, Table } from "react-bootstrap";
 import { api } from "../../api/api";
 import {GoTrash} from 'react-icons/go'
 import { useNavigate } from "react-router-dom";
+import CustomAlertSuccess from "../../components/CustomAlertSuccess";
+import CustomAlertError from "../../components/CustomAlertError";
 
 const Carrinho = () => {
 
@@ -20,6 +22,7 @@ const Carrinho = () => {
     pedidos
   } = useContext(LojaContext);
   const [nomeUsuario, setNomeUsuario] = useState("");
+
   useEffect(() => {
     fetchPedidos(usuarioLogado.id)
   }, [])
@@ -37,7 +40,8 @@ const Carrinho = () => {
       (prod) => prod.nome !== nome
     );
     setProdutosCarrinho(prodCarrinhoFiltrado);
-    alert("Produto removido do carrinho!");
+  //  alert("Produto removido do carrinho!");
+    CustomAlertSuccess('Produto removido do carrinho!', 'com sucesso!')
 
     const valorRemovido = preco * quantidadeCarrinho;
     setTotal(total - valorRemovido);
@@ -62,11 +66,18 @@ const Carrinho = () => {
 
     await api.post('/pedidos', novoPedido)
     handleDiminuirEstoque()
-    alert('Compra realizada com sucesso! Pode ver os detalhes do pedido no seu perfil!')
+  //  alert('Compra realizada com sucesso! Pode ver os detalhes do pedido no seu perfil!')
+    CustomAlertSuccess('Compra realizada com sucesso!', 'Pode ver os detalhes do pedido no seu perfil!')
     pedidos.push(novoPedido)
     handleEsvaziarCarrinho()
-    }else{alert('Adicione um produto ao carrinho antes de finalizar o pedido!')}
-  }else{alert('Por favor, realize o login para finalizar o pedido')}
+    }else{
+  //    alert('Adicione um produto ao carrinho antes de finalizar o pedido!')
+      CustomAlertError('Adicione um produto ao carrinho,', 'antes de finalizar o pedido!')
+    }
+  }else{
+  //  alert('Por favor, realize o login para finalizar o pedido')
+    CustomAlertError('Por favor,', 'realize o login para finalizar o pedido')
+  }
     fetchPedidos()
     navigate('/historico')
   }

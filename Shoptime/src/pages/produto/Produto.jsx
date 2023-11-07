@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom"
 import { Button, Card, CardGroup, Container, InputGroup } from "react-bootstrap";
 import { LojaContext } from "../../context/LojaContext.jsx";
 import {TiShoppingCart} from 'react-icons/ti'
+import CustomAlertSuccess from '../../components/CustomAlertSuccess.jsx'
 
   const Produto = () => {
     const [produto, setProduto] = useState({})
@@ -48,7 +49,8 @@ import {TiShoppingCart} from 'react-icons/ti'
       } else {
         setProdutosCarrinho([...produtosCarrinho, {...produto, quantidadeCarrinho: quantidade}]);
       }
-      alert('Produto adicionado ao carrinho!');
+    //  alert('Produto adicionado ao carrinho!');
+    CustomAlertSuccess('Produto Adicionado', 'ao carrinho!');
     };
   
     return (

@@ -19,6 +19,12 @@
       "email": "raynanatc@hotmail.com",
       "senha": "admin",
       "id": 3
+    },
+    {
+      "nome": "Douglas",
+      "email": "d@d",
+      "senha": "123",
+      "id": 4
     }
   ],
   "produtos": [
@@ -60,7 +66,7 @@
       "quantidade": 62,
       "descricao": "Skate gamer que brilha enquanto você manda aquele kickflip maneiro.",
       "imgurl": "https://ae01.alicdn.com/kf/H995d06a0f7d748f09f362da7182af8cfz/Skate-esportivo-3d-led-usb-l-mpada-tridimensional-inovativa-desktops-downlights-controlador-rgb-toque-remoto-decora.jpg",
-      "favoritos": 132
+      "favoritos": 140
     },
     {
       "id": 5,
