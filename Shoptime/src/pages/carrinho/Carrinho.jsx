@@ -132,7 +132,7 @@ const Carrinho = () => {
                   <td>R$ {produto.preco}</td>
                   <td>R$ {(produto.preco * produto.quantidadeCarrinho).toFixed(2)}</td>
                   <td>
-                    <Button style={{backgroundColor:"BlanchedAlmond", marginLeft:'40px'}}
+                    <Button style={{backgroundColor:"GhostWhite", marginLeft:'40px'}}
                       onClick={() =>
                         handleRemoverCarrinho(
                           produto.nome,

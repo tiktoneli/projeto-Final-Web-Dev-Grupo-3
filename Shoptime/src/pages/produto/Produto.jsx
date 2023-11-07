@@ -3,6 +3,7 @@ import { api } from "../../api/api"
 import { useParams } from "react-router-dom"
 import { Button, Card, CardGroup, Container, InputGroup } from "react-bootstrap";
 import { LojaContext } from "../../context/LojaContext.jsx";
+import {TiShoppingCart} from 'react-icons/ti'
 
   const Produto = () => {
     const [produto, setProduto] = useState({})
@@ -103,12 +104,12 @@ import { LojaContext } from "../../context/LojaContext.jsx";
         </Button>
       </InputGroup>
       <div className="d-flex">
-        <button
+        <button style={{backgroundColor:'GhostWhite'}}
           onClick={handleAdicionarCarrinho}
           type="submit"
           className="btn btn-primary mx-1"
         >
-          Add ao Carrinho
+          <TiShoppingCart color="slateblue" size={30}/>
         </button>
       </div>
     </Card.Footer>
