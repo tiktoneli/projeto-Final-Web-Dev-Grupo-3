@@ -7,7 +7,7 @@ import CustomAlertSuccess from "./CustomAlertSuccess";
 
 const CardProdutos = ({ id, nome, favoritos, imgurl, preco }) => {
 
-  const {setProdutos, produtosCarrinho, setProdutosCarrinho, setProdutosExibidos, produtos } = useContext(LojaContext)
+  const {setProdutos, produtosCarrinho, setProdutosCarrinho, setProdutosExibidos, produtos, setFiltroNome } = useContext(LojaContext)
   
   const getProdutos = async () => {
     const response = await api.get(`/produtos`)
@@ -78,7 +78,7 @@ const CardProdutos = ({ id, nome, favoritos, imgurl, preco }) => {
           </Card.Text>
         </Card.Body>
         <Card.Footer style={{ display: "flex", justifyContent: "flex-end" }}>
-          <Link to={`/produto/${id}`} style={{ marginRight: "auto" }}>
+          <Link onClick={setFiltroNome('')} to={`/produto/${id}`} style={{ marginRight: "auto" }}>
             <Button
               style={{ backgroundColor: "slateBlue", borderColor: "slateBlue" }}
             >

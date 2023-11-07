@@ -10,11 +10,11 @@ import {IoPersonCircleOutline} from 'react-icons/io5'
 import Cart from '../assets/Cart.png'
 
 const Header = () => {
-  const [filtroNome, setFiltroNome] = useState("");
-  const [textoPesquisa, setTextoPesquisa] = useState("")
 
-  const { setProdutos, setProdutosExibidos, produtos } = useContext(LojaContext);
+  const { setProdutos, setProdutosExibidos, produtos, textoPesquisa, setTextoPesquisa, filtroNome, setFiltroNome, usuarioLogado } = useContext(LojaContext);
   const navigate = useNavigate()
+
+  const [textoLogado, setTextoLogado] = useState()
 
   const getProdutos = async () => {  
     const response = await api.get("/produtos");
@@ -25,42 +25,30 @@ const Header = () => {
   };
 
   useEffect(() => {
-    getProdutos();
-    setTextoPesquisa('')
-  }, []);
+    if(!usuarioLogado.id == 0){
+      handleLogado()
+    }else{setTextoLogado('')}
+  }, [usuarioLogado]);
 
   const handleChangeFiltro = (e) => {
     setFiltroNome(e.target.value);
-  };
-
-  const handleChangeTexto = () => {
-    if(!filtroNome == ""){
-    setTextoPesquisa(`mostrando resultados para: ${filtroNome}`);
-    }else{setTextoPesquisa('')}
   };
 
   //tentativa de pesquisa a partir de qualquer rota
   const handleNavigateFiltro = (e) => {
     e.preventDefault()
     navigate('/home')
-    handleFiltrar(e)
   }
-
-  const handleFiltrar = async (e) => {
-    e.preventDefault();
-    const produtosFiltrados = await api.get('/produtos', {
-      params: {nome_like: filtroNome}
-    })
-    setProdutosExibidos(produtosFiltrados.data);
-   
-    handleChangeTexto()
-  };
 
   const handleLimparPesquisa = async (e) => {
     e.preventDefault()
     setFiltroNome('');
     setTextoPesquisa('');
     await getProdutos();
+  }
+
+  const handleLogado = () => {
+    setTextoLogado(`Olá ${usuarioLogado.nome}, seja bem vindo!`)
   }
 
 
@@ -77,12 +65,16 @@ const Header = () => {
         
         <Form onSubmit={handleNavigateFiltro} inline>
           <Row>
-            <Col xs='auto'>
+          <Col style={{margin:'20px',fontSize:'12px'}} xs="2">
+            <p>{textoLogado}</p>
+            
+          </Col>
+            <Col xs='2'>
               <Link to={"/"}>
                 <Navbar.Brand href="#home"><IoPersonCircleOutline style={{marginTop:'20px'}} size={43}/></Navbar.Brand>
               </Link>
             </Col>
-            <Col xs="auto">
+            <Col xs="2">
               <Form.Control  style={{marginTop:'24px'}}
                 type="text"
                 placeholder="Search"
@@ -91,24 +83,19 @@ const Header = () => {
                 onChange={handleChangeFiltro}
               />
             </Col>
-            <Col xs="auto">
-              <Button style={{marginTop:'29px', backgroundColor:'chocolate'}} type="submit">
-                <FaMagnifyingGlass/>
-              </Button>
-            </Col>
-            <Col xs="auto">
-              <Button style={{marginTop:'24px', backgroundColor:'orangered', opacity:'0.9'}} onClick={handleLimparPesquisa}>
+            <Col xs="2">
+              <Button style={{fontSize:'12px',marginTop:'24px', backgroundColor:'orangered', opacity:'0.9'}} onClick={handleLimparPesquisa}>
                 Limpar Pesquisa
               </Button>
               </Col>
-              <Col xs='auto'>
-              <Button style={{marginTop:'24px', marginLeft:'10px', backgroundColor:'BlanchedAlmond', color:'slateblue', fontWeight:'bold'}} onClick={() => {
+              <Col xs='2'>
+              <Button style={{fontSize:'12px',marginTop:'24px', marginLeft:'10px', backgroundColor:'BlanchedAlmond', color:'slateblue', fontWeight:'bold'}} onClick={() => {
                 navigate('/historico')
               }}>
                 Meus Pedidos
               </Button>
               </Col>
-              <Col xs='auto' style={{marginTop:'15px'}}>
+              <Col xs='1' style={{marginTop:'15px'}}>
               <Link to={'/carrinho'}><img style={{maxHeight:'50px'}} src={Cart} /></Link>
               </Col>
           </Row>

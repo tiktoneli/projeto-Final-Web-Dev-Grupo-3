@@ -7,7 +7,7 @@ import FundoSem from '../../assets/FundoSem.png'
 
 const Listagem = () => {
 
-  const {produtos, setProdutos, produtosExibidos, setProdutosExibidos} = useContext(LojaContext)
+  const {produtos, setProdutos, produtosExibidos, setProdutosExibidos, setTextoPesquisa, filtroNome} = useContext(LojaContext)
 
   const getProdutos = async () => {
       const response = await api.get('/produtos')
@@ -15,9 +15,30 @@ const Listagem = () => {
       setProdutosExibidos((produtos.filter((prod) => prod.quantidade > 0 )))
   }
 
-  useEffect( () => {
+  useEffect(() => {
+    handleFiltrar()
+  }, [filtroNome])
+
+  useEffect(() => {
     getProdutos()
+    setProdutosExibidos((produtos.filter((prod) => prod.quantidade > 0 )))
   },[])
+
+  const handleFiltrar = async () => {
+    if(!filtroNome == ''){
+    const produtosFiltrados = await api.get('/produtos', {
+      params: {nome_like: filtroNome}
+    })
+    setProdutosExibidos(produtosFiltrados.data);
+    handleChangeTexto()
+  }else{setProdutosExibidos((produtos.filter((prod) => prod.quantidade > 0 )))}
+};
+
+  const handleChangeTexto = () => {
+    if(!filtroNome == ""){
+    setTextoPesquisa(`mostrando resultados para: ${filtroNome}`);
+    }else{setTextoPesquisa('')}
+  };
 
   return (
       <div style={{backgroundImage: `url(${FundoSem})`, minHeight:'100vh', display: 'flex',

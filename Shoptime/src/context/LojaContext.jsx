@@ -12,6 +12,9 @@ export const LojaProvider = ({children}) => {
   const [quantidadeCarrinho, setQuantidadeCarrinho] = useState(0)
   const [total, setTotal] = useState(0);
   const [produtosExibidos, setProdutosExibidos] = useState([])
+
+  const [textoPesquisa, setTextoPesquisa] = useState("")
+  const [filtroNome, setFiltroNome] = useState("");
   
   const [quantidadeEstoque, setQuantidadeEstoque] = useState(0)
   const [pedidos, setPedidos] = useState([])
@@ -19,6 +22,6 @@ export const LojaProvider = ({children}) => {
   const [usuarioLogado, setUsuarioLogado] = useState({})
 
   return(
-    <LojaContext.Provider value={{email, setEmail, senha, setSenha, usuarios, setUsuarios, pedidos, setPedidos, produtos, setProdutos, quantidade, setQuantidade, produtosCarrinho, setProdutosCarrinho, usuarioLogado, setUsuarioLogado, quantidadeCarrinho, setQuantidadeCarrinho, total, setTotal, quantidadeEstoque, setQuantidadeEstoque, produtosExibidos, setProdutosExibidos}}>{children}</LojaContext.Provider>
+    <LojaContext.Provider value={{email, setEmail, senha, setSenha, usuarios, setUsuarios, pedidos, setPedidos, produtos, setProdutos, quantidade, setQuantidade, produtosCarrinho, setProdutosCarrinho, usuarioLogado, setUsuarioLogado, quantidadeCarrinho, setQuantidadeCarrinho, total, setTotal, quantidadeEstoque, setQuantidadeEstoque, produtosExibidos, setProdutosExibidos,textoPesquisa,setTextoPesquisa,filtroNome,setFiltroNome}}>{children}</LojaContext.Provider>
   )
 }
