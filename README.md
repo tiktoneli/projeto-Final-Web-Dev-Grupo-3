@@ -47,7 +47,7 @@ Extras:
 ● Permitir ver os produtos por categoria, utilizando rotas dinâmicas.  ❌  
 ● Dentro da tela de um produto específico será possível avaliar o produto
 como gostei ou não gostei. Qualquer usuário que logar na aplicação, irá ver a
-nota dada por outros usuários.  ❌  
+nota dada por outros usuários.  👌    
 ● Ao finalizar a compra a mesma deverá ser registrada via API na rota de
 pedidos. 👌  
 
