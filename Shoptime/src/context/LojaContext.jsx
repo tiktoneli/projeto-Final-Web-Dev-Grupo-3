@@ -1,12 +1,10 @@
 import { createContext, useState } from "react";
-import { api } from "../api/api";
 
 export const LojaContext = createContext({})
 
 export const LojaProvider = ({children}) => {
   const [email, setEmail] = useState('')
   const [senha, setSenha] = useState('')
-  const [usuarios, setUsuarios] = useState([])
   const [quantidade, setQuantidade] = useState(0)
   const [produtos, setProdutos] = useState([])
   const [quantidadeCarrinho, setQuantidadeCarrinho] = useState(0)
@@ -22,6 +20,6 @@ export const LojaProvider = ({children}) => {
   const [textoPesquisa, setTextoPesquisa] = useState("")
 
   return(
-    <LojaContext.Provider value={{email, setEmail, senha, setSenha, usuarios, setUsuarios, pedidos, setPedidos, produtos, setProdutos, quantidade, setQuantidade, produtosCarrinho, setProdutosCarrinho, usuarioLogado, setUsuarioLogado, quantidadeCarrinho, setQuantidadeCarrinho, total, setTotal, quantidadeEstoque, setQuantidadeEstoque, produtosExibidos, setProdutosExibidos, filtroNome,setFiltroNome, textoPesquisa, setTextoPesquisa}}>{children}</LojaContext.Provider>
+    <LojaContext.Provider value={{email, setEmail, senha, setSenha, pedidos, setPedidos, produtos, setProdutos, quantidade, setQuantidade, produtosCarrinho, setProdutosCarrinho, usuarioLogado, setUsuarioLogado, quantidadeCarrinho, setQuantidadeCarrinho, total, setTotal, quantidadeEstoque, setQuantidadeEstoque, produtosExibidos, setProdutosExibidos, filtroNome,setFiltroNome, textoPesquisa, setTextoPesquisa}}>{children}</LojaContext.Provider>
   )
 }

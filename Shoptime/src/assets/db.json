@@ -25,6 +25,18 @@
       "email": "d@d",
       "senha": "123",
       "id": 4
+    },
+    {
+      "nome": "teste",
+      "email": "teste@teste",
+      "senha": "admin",
+      "id": 5
+    },
+    {
+      "nome": "tiktik",
+      "email": "alo@alo",
+      "senha": "123",
+      "id": 6
     }
   ],
   "produtos": [
@@ -43,7 +55,7 @@
       "categoria": "Esportes",
       "nome": "Bola de Futevôlei",
       "preco": 39.99,
-      "quantidade": 1,
+      "quantidade": 0,
       "descricao": "Bola redonda e que rola feita para ser chutada.",
       "imgurl": "https://i.zst.com.br/thumbs/12/6/16/1949710756.jpg",
       "favoritos": 64
@@ -56,17 +68,17 @@
       "quantidade": 815,
       "descricao": "Máquina simples usada para clonagem de nível celular.",
       "imgurl": "https://s2.glbimg.com/SV9nyuaDYTlEHHwBMf3mW1n59_w=/e.glbimg.com/og/ed/f/original/2016/07/05/dolly_face_closeup.jpg",
-      "favoritos": 480
+      "favoritos": 500
     },
     {
       "id": 4,
       "categoria": "Esportes",
       "nome": "Skate RGB",
       "preco": 169.99,
-      "quantidade": 60,
+      "quantidade": 58,
       "descricao": "Skate gamer que brilha enquanto você manda aquele kickflip maneiro.",
       "imgurl": "https://ae01.alicdn.com/kf/H995d06a0f7d748f09f362da7182af8cfz/Skate-esportivo-3d-led-usb-l-mpada-tridimensional-inovativa-desktops-downlights-controlador-rgb-toque-remoto-decora.jpg",
-      "favoritos": 141
+      "favoritos": 150
     },
     {
       "id": 5,
@@ -329,6 +341,30 @@
         }
       ],
       "id": 18
+    },
+    {
+      "dataPedido": "07/11/2023",
+      "valorTotal": 169.99,
+      "idUser": 5,
+      "itens": [
+        {
+          "idProduto": 4,
+          "quantidade": 1
+        }
+      ],
+      "id": 19
+    },
+    {
+      "dataPedido": "07/11/2023",
+      "valorTotal": 169.99,
+      "idUser": 5,
+      "itens": [
+        {
+          "idProduto": 4,
+          "quantidade": 1
+        }
+      ],
+      "id": 20
     }
   ]
 }

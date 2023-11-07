@@ -7,12 +7,12 @@ import FundoSem from '../../assets/FundoSem.png'
 
 const Listagem = () => {
 
-  const {filtroNome, setFiltroNomeprodutos, setProdutos, produtosExibidos, setProdutosExibidos, textoPesquisa} = useContext(LojaContext)
+  const {produtos, setProdutos, produtosExibidos, setProdutosExibidos, textoPesquisa} = useContext(LojaContext)
 
   const getProdutos = async () => {
       const response = await api.get('/produtos')
       setProdutos(response.data)
-      setProdutosExibidos((produtos.filter((prod) => prod.quantidade > 0 )))
+      setProdutosExibidos((response.data.filter((prod) => prod.quantidade > 0 )))
   }
 
   useEffect( () => {

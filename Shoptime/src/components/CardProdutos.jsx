@@ -4,6 +4,7 @@ import { Button, Card, Col } from "react-bootstrap";
 import { LojaContext } from "../context/LojaContext";
 import { useContext, useEffect } from "react";
 import CustomAlertSuccess from "./CustomAlertSuccess";
+import {RiShoppingCartFill} from 'react-icons/ri'
 
 const CardProdutos = ({ id, nome, favoritos, imgurl, preco }) => {
 
@@ -12,7 +13,7 @@ const CardProdutos = ({ id, nome, favoritos, imgurl, preco }) => {
   const getProdutos = async () => {
     const response = await api.get(`/produtos`)
     setProdutos(response.data)
-    setProdutosExibidos((produtos.filter((prod) => prod.quantidade > 0 )))
+    setProdutosExibidos((response.data.filter((prod) => prod.quantidade > 0 )))
     }
 
   const handleLike = async () => {
@@ -104,7 +105,7 @@ const CardProdutos = ({ id, nome, favoritos, imgurl, preco }) => {
             }}
             onClick={handleAdicionarCarrinho}
           >
-            🛒
+            <RiShoppingCartFill size={'25'} color="slateblue"/>
           </Button>
         </Card.Footer>
       </Card>
