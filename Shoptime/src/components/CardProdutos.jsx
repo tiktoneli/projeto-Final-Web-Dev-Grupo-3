@@ -22,7 +22,7 @@ const CardProdutos = ({ id, nome, favoritos, imgurl, preco }) => {
   }
 
   useEffect(() => {
-    getProdutos()
+    
   },[])
 
   const handleAdicionarCarrinho = () => {

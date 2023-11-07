@@ -26,7 +26,7 @@ import CustomAlertSuccess from '../../components/CustomAlertSuccess.jsx'
   
     useEffect(() => {
         getProduto()
-        setQuantidade(0)
+        setQuantidade(1)
     }, [])
 
     const handleAumentar = () => {
@@ -34,12 +34,13 @@ import CustomAlertSuccess from '../../components/CustomAlertSuccess.jsx'
     };
   
     const handleDiminuir = () => {
-      if (quantidade > 0) {
+      if (quantidade > 1) {
         setQuantidade(quantidade - 1);
       }
     };
 
     const handleAdicionarCarrinho = () => {
+      if(quantidade > 0){
       setQuantidadeCarrinho(quantidade)
       const produtoExistente = produtosCarrinho.find((prod) => prod.id == id);
       if (produtoExistente) {
@@ -51,6 +52,7 @@ import CustomAlertSuccess from '../../components/CustomAlertSuccess.jsx'
         setProdutosCarrinho([...produtosCarrinho, {...produto, quantidadeCarrinho: quantidade}]);
       }
     CustomAlertSuccess('Produto Adicionado', 'ao carrinho!');
+  }
     };
   
     return (

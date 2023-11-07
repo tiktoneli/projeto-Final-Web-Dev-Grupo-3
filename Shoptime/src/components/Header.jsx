@@ -13,7 +13,7 @@ const Header = () => {
   const [filtroNome, setFiltroNome] = useState("");
   const [textoPesquisa, setTextoPesquisa] = useState("")
 
-  const { setProdutos, setProdutosExibidos, produtos, produtosExibidos } = useContext(LojaContext);
+  const { setProdutos, setProdutosExibidos, produtos } = useContext(LojaContext);
   const navigate = useNavigate()
 
   const getProdutos = async () => {  
@@ -40,10 +40,10 @@ const Header = () => {
   };
 
   //tentativa de pesquisa a partir de qualquer rota
-  const handleNavigateFiltro = async (e) => {
+  const handleNavigateFiltro = (e) => {
     e.preventDefault()
     navigate('/home')
-    await handleFiltrar(e)
+    handleFiltrar(e)
   }
 
   const handleFiltrar = async (e) => {
@@ -52,9 +52,6 @@ const Header = () => {
       params: {nome_like: filtroNome}
     })
     setProdutosExibidos(produtosFiltrados.data);
-      const produtosFiltradosCat = await api.get('/produtos', {
-        params: {categoria_like: filtroNome}
-      })
    
     handleChangeTexto()
   };
