@@ -7,6 +7,7 @@ import { useContext, useState } from "react";
 import { LojaContext } from "../../context/LojaContext";
 import { api } from "../../api/api";
 import { useNavigate } from "react-router-dom";
+import CustomAlertSuccess from "../../components/CustomAlertSuccess";
 
 const Cadastro = () => {
   const {email, setEmail, senha, setSenha} = useContext(LojaContext);
@@ -24,7 +25,8 @@ const Cadastro = () => {
       senha: senha  
     }
     await api.post('/users', novoCadastro)
-    alert('Usuário cadastrado com sucesso!')
+  //  alert('Usuário cadastrado com sucesso!')
+    CustomAlertSuccess('Usuário cadastrado', 'com sucesso!')
     navigate('/')
     setEmail('')
     setSenha('')

@@ -1,14 +1,16 @@
 import { useContext, useEffect, useState } from "react"
 import { api } from "../../api/api"
 import { useParams } from "react-router-dom"
-import { Button, Card, CardGroup, Container, InputGroup } from "react-bootstrap";
+import { Button, Card, Container, InputGroup } from "react-bootstrap";
 import { LojaContext } from "../../context/LojaContext.jsx";
+
 import { FaShoppingCart } from 'react-icons/fa';
+import CustomAlertSuccess from '../../components/CustomAlertSuccess.jsx'
 
   const Produto = () => {
     const [produto, setProduto] = useState({})
 
-    const {quantidadeCarrinho, setQuantidadeCarrinho, quantidade, setQuantidade, produtosCarrinho, setProdutosCarrinho} = useContext(LojaContext)
+    const {setQuantidadeCarrinho, quantidade, setQuantidade, produtosCarrinho, setProdutosCarrinho} = useContext(LojaContext)
 
     const { id } = useParams()
   
@@ -48,7 +50,7 @@ import { FaShoppingCart } from 'react-icons/fa';
       } else {
         setProdutosCarrinho([...produtosCarrinho, {...produto, quantidadeCarrinho: quantidade}]);
       }
-      alert('Produto adicionado ao carrinho!');
+    CustomAlertSuccess('Produto Adicionado', 'ao carrinho!');
     };
   
     return (

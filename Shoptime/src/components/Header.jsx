@@ -52,8 +52,10 @@ const Header = () => {
       params: {nome_like: filtroNome}
     })
     setProdutosExibidos(produtosFiltrados.data);
-    console.log(produtosExibidos)
-    
+      const produtosFiltradosCat = await api.get('/produtos', {
+        params: {categoria_like: filtroNome}
+      })
+   
     handleChangeTexto()
   };
 

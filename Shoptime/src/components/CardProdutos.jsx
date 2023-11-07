@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Button, Card, Col } from "react-bootstrap";
 import { LojaContext } from "../context/LojaContext";
 import { useContext, useEffect } from "react";
+import CustomAlertSuccess from "./CustomAlertSuccess";
 
 const CardProdutos = ({ id, nome, favoritos, imgurl, preco }) => {
 
@@ -48,7 +49,8 @@ const CardProdutos = ({ id, nome, favoritos, imgurl, preco }) => {
       setProdutosCarrinho([...produtosCarrinho, produtoAdd]);
     }
 
-    alert("Produto adicionado ao carrinho!");
+  //  alert("Produto adicionado ao carrinho!");
+    CustomAlertSuccess('Produto adicionado ao carrinho!', 'com sucesso')
   };
 
   return (

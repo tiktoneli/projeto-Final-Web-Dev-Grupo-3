@@ -9,6 +9,8 @@ import { Container } from "react-bootstrap";
 import { useContext, useEffect } from "react";
 import { LojaContext } from "../context/LojaContext";
 import { useNavigate } from "react-router-dom";
+import CustomAlertError from "./CustomAlertError";
+import CustomAlertSuccess from "./CustomAlertSuccess";
 
 const CardLogin = () => {
     const {setPedidos, usuarioLogado, email, senha, setEmail, setSenha, setUsuarios, setUsuarioLogado} = useContext(LojaContext)
@@ -34,11 +36,10 @@ const CardLogin = () => {
     setUsuarioLogado(response.data[0])
 
     if(response.data[0]==undefined){
-      alert('usuario ou senha invalidos!')
+      CustomAlertError('usuario ou senha', 'invalidos!')
     }else{ 
-      const id = response.data[0].id
-      fetchPedidos(id)
-      alert('Usuário logado com sucesso!')
+      fetchPedidos(response.data[0].id)
+      CustomAlertSuccess('Usuário logado', 'com sucesso!')
       navigate('/home')
   }
   }
