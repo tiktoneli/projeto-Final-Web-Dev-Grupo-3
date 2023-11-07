@@ -34,7 +34,9 @@ const Header = () => {
   };
 
   const handleChangeTexto = () => {
+    if(!filtroNome == ""){
     setTextoPesquisa(`mostrando resultados para: ${filtroNome}`);
+    }else{setTextoPesquisa('')}
   };
 
   //tentativa de pesquisa a partir de qualquer rota
@@ -51,7 +53,7 @@ const Header = () => {
     })
     setProdutosExibidos(produtosFiltrados.data);
     console.log(produtosExibidos)
-
+    
     handleChangeTexto()
   };
 

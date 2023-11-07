@@ -3,7 +3,7 @@ import { api } from "../../api/api"
 import { useParams } from "react-router-dom"
 import { Button, Card, CardGroup, Container, InputGroup } from "react-bootstrap";
 import { LojaContext } from "../../context/LojaContext.jsx";
-import {TiShoppingCart} from 'react-icons/ti'
+import { FaShoppingCart } from 'react-icons/fa';
 
   const Produto = () => {
     const [produto, setProduto] = useState({})
@@ -52,73 +52,63 @@ import {TiShoppingCart} from 'react-icons/ti'
     };
   
     return (
-      <div style={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}>
-    <Container style={{ paddingTop: "1.5rem" }}>
-      <CardGroup style={{ minHeight: "35rem" }} className="d-flex">
-        <Card style={{ width: "70%" }}>
-          <Card.Img
-            style={{ height: "100%", objectFit: "cover" }}
-            variant="top"
-            src={produto.imgurl}
-          />
-        </Card>
-        <Card style={{ width: "30%", margin: "0 auto" }}>
-    <Card.Title className="d-flex justify-content-between mb-3" style={{ padding:"20px", marginBottom: "10px", borderBottom: "1px solid #ccc" }}>
-      {produto.nome}
-      <Button
-        onClick={() => {
-          handleLike(produto.id, produto.favoritos);
-        }}
-        variant="danger"
-      >
-        ❤️{produto.favoritos}
-      </Button>
-    </Card.Title>
-    <Card.Body className="d-flex flex-column flex-grow-1">
-    <div style={{ marginBottom: 'auto' }}>
-      <Card.Text>
-        Descrição:
-        <br />
-        {produto.descricao}
-      </Card.Text>
-    </div>
-    <div style={{ marginTop: 'auto' }}>
-      <Card.Text>
-        R$ {produto.preco}
-      </Card.Text>
-    </div>
-  </Card.Body>
-    <Card.Footer className="d-flex justify-content-between mt-auto" style={{ borderTop: "1px solid #ccc" }}>
-      <InputGroup className="mb-1">
-        <Button variant="secondary" onClick={handleDiminuir}>
-          -
-        </Button>
-        <span
-          className="p-2"
-          style={{ backgroundColor: "#6c757d", color: "#FFFFFF" }}
-        >
-          {quantidade}
-        </span>
-        <Button variant="secondary" onClick={handleAumentar}>
-          +
-        </Button>
-      </InputGroup>
-      <div className="d-flex">
-        <button style={{backgroundColor:'GhostWhite'}}
-          onClick={handleAdicionarCarrinho}
-          type="submit"
-          className="btn btn-primary mx-1"
-        >
-          <TiShoppingCart color="slateblue" size={30}/>
-        </button>
-      </div>
-    </Card.Footer>
-  </Card>
-  
-          </CardGroup>
+      <div style={{ minHeight: "100vh", display: "flex", justifyContent: "center", alignItems: "center" }}>
+        <Container style={{ paddingTop: "0rem", display: "flex", justifyContent: "center" }}>
+          <Card style={{ width: "31%", minHeight: "10.5rem" }}>
+            <Card.Img
+              style={{ marginTop:'10px', height: "40%", maxHeight:'50vh' , objectFit: "contain " }}
+              variant="top"
+              src={produto.imgurl}
+            />
+            <hr />
+            <Card.Body>
+              <Card.Title className="d-flex justify-content-between mb-3" style={{ padding:"10px", marginBottom: "5px" }}>
+                {produto.nome}
+                <Button
+                  onClick={() => {
+                    handleLike(produto.id, produto.favoritos);
+                  }}
+                  variant="link"
+                  style={{ color: "red", textDecoration: "none" }}
+                >
+                 ❤️{produto.favoritos}
+                </Button>
+              </Card.Title>
+              <Card.Text style={{ fontSize: "14px" }}>
+                Descrição:
+                <br />
+                {produto.descricao}
+              </Card.Text>
+              <Card.Text>
+                R$ {produto.preco}
+              </Card.Text>
+              <div style={{display: "flex"}}>
+              <InputGroup className="mb-1">
+                <Button variant="secondary" onClick={handleDiminuir}>
+                  -
+                </Button>
+                <span
+                  className="p-2"
+                  style={{ backgroundColor: "#6c757d", color: "#FFFFFF" }}
+                >
+                  {quantidade}
+                </span>
+                <Button variant="secondary" onClick={handleAumentar}>
+                  +
+                </Button>
+              </InputGroup>
+              <Button
+                onClick={handleAdicionarCarrinho}
+                type="submit"
+                className="btn btn-primary mx-1"
+              >
+                <FaShoppingCart /> 
+              </Button>
+              </div>
+            </Card.Body>
+          </Card>
         </Container>
       </div>
     );
-  };
-  
-  export default Produto;
+  }
+    export default Produto;

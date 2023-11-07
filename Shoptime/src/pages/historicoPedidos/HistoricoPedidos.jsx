@@ -21,9 +21,9 @@ const HistoricoPedidos = () => {
   return (
     <Container style={{backgroundImage: `url(${Fundo})`}} fluid className="p-0 vh-100 d-flex flex-column bg-light">
       <Container>
-        <h3>Histórico de Pedidos</h3>
+        <h3  style={{display:'flex', justifyContent:'center', margin:'10px'}} >Histórico de Pedidos</h3>
         <div style={{ display: "flex", maxWidth: "1440px", flexWrap: "wrap" }}>
-          {pedidos.map((pedido, index) => (
+          {pedidos.map((pedido) => (
             <CardPedidos pedido={pedido} />
           ))}
         </div>
